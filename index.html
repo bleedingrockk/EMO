@@ -3,18 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic HTML Page</title>
-    <link href="css/smain_styles.css" rel="stylesheet">
-    <script src="js/main_script.js"></script>
 
-    
+    <title>Basic HTML Page</title>
+
+    <link href="css/main_styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head> 
 <body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-smile emoji-icon"></i>
+            EMO
+        </div>
+        <div class="links">
+            <a href="">Home</a> |
+            <a href="">Browse Topics</a> |
+            <a href="">How it works</a> |
+            <a href="">FAQs</a> |
+            <a href="">Contact</a> |
+            <a href="">Pages</a> |
+        </div>
+    </header>
     <div class="container">
         <h1>Welcome to My Basic Page</h1>
-        <button id="myButton">Click Me!</button>
-        <div class="message" id="message">Hello, World!</div>
+        <div class="form_container">
+            <i class="fa-solid fa-magnifying-glass fa-beat"></i>
+            <form action="/submit1" method="post1">
+                <input type="text" id="value1" placeholder="Enter the value" name="value1" required>          
+                <button type="submit">Submit</button>
+            </form>
+            <div class="semi-circle left"></div>
+            <div class="semi-circle right"></div>
+        </div>
     </div>
     
+    <!-- Place JavaScript just before closing body tag -->
+    <script src="js/main_script.js"></script>
 </body>
 </html>

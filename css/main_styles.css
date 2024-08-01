@@ -1,0 +1,146 @@
+
+/* CSS Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-color: black;
+    color: white;
+    display: flex;
+    height: 150px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+header .logo {
+    font-size: 40px; /* Adjust size as needed */
+}
+
+header .logo .emoji-icon {
+    font-size: 40px; /* Adjust size as needed */
+    color: #ffcc00; /* Adjust color as needed */
+}
+header .links{
+    font-size: 20px;
+    color: white;
+    width: 70%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+header .links a{
+    text-decoration: none;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.container .form_container{
+    position: relative;
+    width: 50%;
+    height: 70px;
+    background-color: #000000;
+    border-radius: 50px; /* Rounded corners for the container */
+    overflow: hidden; /* Ensures the overflow content is hidden */
+    margin: 20px auto; /* Centering the container */
+    display: flex;
+    align-items: center;
+}
+
+.container .form_container .semi-circle {
+    position: absolute;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 50%; /* Full circle */
+    z-index: 1;
+}
+
+.container .form_container  .semi-circle.left {
+    left: -50px; /* Adjust to position the semi-circle on the left side */
+}
+
+.container .form_container  .semi-circle.right {
+    right: -50px; /* Adjust to position the semi-circle on the right side */
+}
+
+.container .form_container form{
+    width: 70%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.container .form_container form input{
+    width: 70%;
+    height: 40px; /* Set height */
+    padding: 0 10px; /* Adjust padding for consistency */
+    background-color: transparent;
+    font-size: 16px; /* Font size */
+    border-color: transparent;
+}
+.container .form_container i {
+    color: white;
+    font-size: 30px;
+    padding-left: 50px;
+    margin-top: 1mm; /* Shifts the icon 2 mm down */
+}
+
+.container  .form_container form button{
+    background-color: transparent;
+    background-color: white;
+    color: black;
+    height: 40px; /* Set height */
+    padding: 0 10px; /* Adjust padding for consistency */
+    border: transparent; /* Border style */
+    border-radius: 25px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    transition: 0.1s;
+}
+
+.container form button:hover{
+    background-color: transparent;
+    color: white;
+
+}
+
+
+h1 {
+    color: #333;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #555;
+}
