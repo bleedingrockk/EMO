@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Initialize a new Git repository
+echo "Initializing a new Git repository..."
+git init
+
+# Clone an existing repository (replace <repository-url> with your URL)
+echo "Cloning a repository..."
+git clone <repository-url>
+
+# Check the status of your repository
+echo "Checking repository status..."
+git status
+
+# Add changes to the staging area (replace <file> with your file or use '.' to add all)
+echo "Adding files to staging area..."
+git add <file>  # Or use `git add .` to add all changes
+
+# Commit changes with a message
+echo "Committing changes..."
+git commit -m "Your commit message"
+
+# View commit history
+echo "Viewing commit history..."
+git log
+
+# Create a new branch (replace <branch-name> with your branch name)
+echo "Creating a new branch..."
+git branch <branch-name>
+
+# Switch to a different branch (replace <branch-name> with your branch name)
+echo "Switching to a different branch..."
+git checkout <branch-name>  # Or use `git switch <branch-name>`
+
+# Merge a branch into the current branch (replace <branch-name> with your branch name)
+echo "Merging branch..."
+git merge <branch-name>
+
+# Push changes to the remote repository (replace <branch-name> with your branch name)
+echo "Pushing changes to remote repository..."
+git push origin <branch-name>
+
+# Pull changes from the remote repository
+echo "Pulling changes from remote repository..."
+git pull
+
+# Remove a file from the working directory and staging area (replace <file> with your file)
+echo "Removing a file..."
+git rm <file>
+
+# View differences between the working directory and staging area
+echo "Viewing differences..."
+git diff
+
+# Create a new tag (replace <tag-name> with your tag name)
+echo "Creating a new tag..."
+git tag <tag-name>
+
+# View existing tags
+echo "Viewing existing tags..."
+git tag -l
