@@ -122,40 +122,142 @@ header .links a{
     padding: 50px;
 }
 
-.container2 .sub_container1{
+.container2 .container2_sub1{
     width: 35%;
     border-radius: 50px;
     padding: 25px;
-    background-color: #ffcc00;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* Subtle shadow */
 }
 
-.container2 .sub_container2{
+.container2 .container2_sub2{
     width: 45%;
     border-radius: 50px;
     padding: 25px;
-    background-color: #ffcc00;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* Subtle shadow */
 }
 
-h1 {
-    color: #333;
+.container3 {
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+    display: flex;
+    justify-content:space-between;
 }
 
-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+.container3 p{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
+    position: relative;
+    transition: background-color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
 }
 
-button:hover {
-    background-color: #0056b3;
+.container3 p::after {
+    content: ''; /* Necessary for the pseudo-element to appear */
+    position: absolute; /* Allows precise positioning */
+    left: 0;
+    bottom: -38px; /* Moves the underline 38px below the text */
+    width: 100%; /* Matches the width of the text */
+    height: 2px; /* Thickness of the underline */
+    background-color: rgb(255, 0, 0); /* Color of the underline */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out; /* Transition effect */
 }
 
-.message {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #555;
+.container3 p:hover::after {
+    opacity: 1; /* Fade in the underline */
+    height: 2px; /* Ensure the height is visible during hover */
+}
+
+.container3 a:hover {
+    text-decoration: underline;
+}
+
+.styled-line {
+    border: none; /* Remove default border */
+    height: 1px; /* Thickness of the line */
+    background-color: rgba(0, 0, 0, 0.4); /* Line color */
+    margin: 20px 0; /* Space around the line */
+}
+
+
+.container4 {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    width: 85%;
+    padding: 20px;
+    
+}
+.container4 .container4_sub1 {
+    font-size: 20px;
+    width: 30%;
+    background-color: white;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* Subtle shadow */
+    padding: 10px; /* Optional: Add some padding inside the container */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    display: block;
+}
+
+.container4 .container4_sub1 .responsive-img {
+    max-width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Prevent extra space below the image */
+}
+/* -------------------------- TO HIDE AND DISPLAY ELEENTS-------------------------------- */
+
+.tab-content {
+    display: flex; /* Default display */
+    /* Additional styling for tab content */
+}
+
+.hidden {
+    display: none; /* Hide elements with this class */
+}
+
+.container5 {
+    position: relative; /* Allows the pseudo-element to be positioned relative to this container */
+    background-image: url('../images/4.jpg');
+    background-size: cover; /* Ensures the background image covers the entire container */
+    background-position: center; /* Centers the background image */
+    padding: 30px;
+    text-align: center;
+}
+
+.container5::before {
+    content: "";
+    position: absolute; /* Allows positioning the overlay absolutely within .container5 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 92, 255, 0.7), rgba(255, 0, 128, 0.7)); /* Gradient overlay */
+    z-index: 1; /* Ensures the gradient is above the background image */
+    pointer-events: none; /* Allows clicks to pass through the gradient overlay */
+}
+
+.container5 h2 {
+    position: relative; /* Ensure the heading is positioned above the overlay */
+    padding: 10px;
+    font-size: 40px;
+    color: white;
+    z-index: 10; /* Ensure the heading is above the gradient overlay */
+}
+
+.container5 .container5_sub1 {
+    position: relative; /* Ensure correct positioning of the sub-element */
+    width: 50%;
+    margin-right: 0px;
+    z-index: 10;
+    /* Add additional styles if needed */
+}
+
+.container5 .container5_sub1_1 {
+    margin: 30px;
+    background-color: whitesmoke;
+    /* Add additional styles if needed */
 }
