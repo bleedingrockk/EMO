@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EMO</title>
+
+    <link href="static\main_styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+</head> 
+<body>
+    <header>
+        <div class="logo" id="home">
+            <span class="logo-text">
+                EM<i class="fas fa-smile emoji-icon"></i>
+            </span>
+        </div>
+        
+        <div class="links">
+            <a href="#home">Home</a> |
+            <a href="#browse-content">Browse Content</a> |
+            <a href="#how">How it works</a> |
+            <a href="#faq">FAQs</a> |
+            <a href="#contact">Contact</a> |
+        </div>
+    </header>
+    <!-- ------------------------------ Container 1----------------------------------------- -->
+    <div class="container">
+        <h1>Welcome to EMO</h1>
+        <p>Your go-to tool for sentiment analysis on YouTube videos</p>
+        <div class="form_container">
+            <i class="fa-solid fa-magnifying-glass fa-beat"></i>
+            <form action="/submit1" method="post1">
+                <input type="text" id="value1" placeholder="Paste a YouTube link below to analyze its sentiment...." name="value1" required>          
+                <button type="submit">Analyze</button>
+            </form>
+        </div>
+    </div>
+    <!-- ------------------------------ Container 2----------------------------------------- -->
+    <!-- Second with details -->
+    <div class="container2">
+        <div class="container2_sub1">
+            <h2>Sentiment Analysis</h2>
+            <p>Analyze the sentiment of YouTube videos by pasting their links. Get insights into the overall mood and emotions expressed in the video.</p>
+            <img src="static\18.jpg" alt="Background image" class="background-image">
+        </div>
+        <div class="container2_sub2">
+            <h2>Features</h2>
+            <p>Our sentiment analysis tool provides a quick and easy way to understand the emotions in YouTube videos. Get detailed insights and improve your content strategy.</p>
+            <img src="static\7.jpg" alt="Background image" class="background-image">
+        </div>
+    </div>
+    
+    
+    <!-- suggested videos -->
+    <div class="block-container">
+        <h1 id="browse-content">Browse Content</h1>
+    </div>
+        <!-- ------------------------------ Container 3 ----------------------------------------- -->
+    <div class="container3">
+        
+        <p id="container3_heading_1">Entertainment</p> 
+        <p id="container3_heading_2">Finance</p> 
+        <p id="container3_heading_3">Education</p> 
+    </div>
+    <!-- Straight line -->
+    <hr class="styled-line">
+    
+    <!-- ------------------------------ Container 4----------------------------------------- -->
+    <div class="container4">
+        <div class="container4_sub1" id="container4_sub1_1">
+            <h2>Entertainment</h2>
+            Discover the latest in entertainment, from trending music and movies to the most talked-about TV series. Stay updated with the hottest releases and must-see content.
+            <img src="static\20.jpg" alt="Music" class="responsive-img">
+        </div>
+        
+        <div class="container4_sub1 hidden" id="container4_sub1_2">
+            <h2>Finance</h2>
+            Explore the latest news and trends in the financial world. Get insights into market movements, investment opportunities, and economic developments that shape the global economy.
+            <img src="static\17.jpg" alt="Education" class="responsive-img">
+        </div>
+        
+        <div class="container4_sub1 hidden" id="container4_sub1_3">
+            <h2>Education</h2>
+            Stay informed about advancements in education, innovative teaching methods, and resources for students and educators. Discover articles on online learning, academic research, and educational policies.
+            <img src="static\24.jpg" alt="News" class="responsive-img">
+        </div>
+    </div>
+    
+    <!-- ------------------------------ Container 4.1 ----------------------------------------- -->
+
+
+
+
+    <!-- ------------------------------ Container 5 ----------------------------------------- -->
+
+    <div class="container5">
+        <h2 id="how">How Does It Work?</h2>
+        <div class="container5_sub1">
+            <div class="step">
+                <div class="step_number">1</div>
+                <div class="step_content">
+                    <h3>Paste Your YouTube Links</h3>
+                    <p>Enter the YouTube video links you want to analyze. Our tool supports all types of videos from music to news.</p>
+                </div>
+                <div class="arrow_right"></div>
+            </div>
+            <div class="step">
+                <div class="step_number">2</div>
+                <div class="step_content">
+                    <h3>Analyze the Video</h3>
+                    <p>Our sentiment analysis engine processes the comments on your videos, revealing the underlying emotions.</p>
+                </div>
+                <div class="arrow_right"></div>
+            </div>
+            <div class="step">
+                <div class="step_number">3</div>
+                <div class="step_content">
+                    <h3>Get the Sentiment Results</h3>
+                    <p>Receive detailed insights into viewer moods and reactions. Understand how your content resonates in real-time.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- ------------------------------ Container 6 ----------------------------------------- -->
+
+        <div class="container6">
+            <div class="container6-content">
+                <div class="container6-accordion">
+                    <h1 id="faq">Frequently Asked Questions</h1>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-target="#collapseOne" aria-expanded="true">
+                                <span>What is EMO Sentiment Analysis?</span>
+                                <i class="fas fa-chevron-down arrow-icon"></i>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-content show">
+                            <p>EMO Sentiment Analysis is a tool that analyzes the sentiment of YouTube video content and comments, providing insights into the overall mood and emotions expressed in the video.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-target="#collapseTwo" aria-expanded="false">
+                                <span>How does the sentiment analysis work?</span>
+                                <i class="fas fa-chevron-down arrow-icon"></i>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-content">
+                            <p>Our tool uses natural language processing (NLP) techniques to analyze the text in YouTube video comments and content.</p>
+                            <p> It identifies positive, negative, and neutral sentiments to provide an overall sentiment score.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-target="#collapseThree" aria-expanded="false">
+                                <span>Is EMO Sentiment Analysis free to use?</span>
+                                <i class="fas fa-chevron-down arrow-icon"></i>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-content">
+                            <p>Yes, EMO Sentiment Analysis is free to use. You can analyze as many YouTube videos as you like without any cost.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-target="#collapseFour" aria-expanded="false">
+                                <span>How accurate is the sentiment analysis?</span>
+                                <i class="fas fa-chevron-down arrow-icon"></i>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-content">
+                            <p>Our sentiment analysis tool is highly accurate, utilizing advanced NLP algorithms to ensure reliable results.</p>
+                            <p>However, no automated tool is 100% accurate, and results may vary based on the complexity of the language used in the comments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ------------------------------ Container 7 ----------------------------------------- -->
+        
+        <div class="container7">
+            <div class="row">
+    
+                <div class="col-lg-12 col-12 text-center">
+                    <h1 id='contact' class="mb-5">Get in touch</h1>
+                </div>
+    
+                <div class="container7">
+                    <div class="row align-items-start">
+                
+                        <!-- Google Map on the left -->
+                        <div class="col-lg-6 col-12 mb-4 mb-lg-0">
+                            <iframe 
+                                class="google-map" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.2115444844185!2d77.5966616!3d12.9362362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15b277a93807%3A0x88518f37b39dabd0!2sChrist%20University!5e0!3m2!1sen!2sin!4v1690802454325!5m2!1sen!2sin" 
+                                width="100%" 
+                                height="250" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        
+                        <!-- Contact Info on the right -->
+                    
+                           
+                
+                        <!-- Centered Heading -->
+                        <div class="col-12 text-center mt-4">
+                            <h4 class="mb-3">Contact</h4>
+                            <p>Location: Bengaluru, Karnataka, India</p>
+                            <div class="contact-info">
+                                <p class="contact-item">
+                                    <span class="contact-label">Phone:</span>
+                                    <a href="tel:333-222-1111" class="site-footer-link">333-222-1111</a>
+                                </p>
+                                <p class="contact-item">
+                                    <span class="contact-label">Email:</span>
+                                    <a href="mailto:emo.sentiment@gmail.com" class="site-footer-link">emo.sentiment@gmail.com</a>
+                                </p>
+
+                        </div>
+                
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    
+    <!-- Place JavaScript just before closing body tag -->
+    <script src="C:\Users\jsrut\OneDrive\Documents\4Trimester\webproject\webprodemo\static\main_script.js"></script>
+</body>
+</html>

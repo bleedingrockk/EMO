@@ -1,0 +1,508 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(214, 239, 216); /* Light green */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(128, 175, 129); /* Dark green */
+    color: rgb(26, 83, 25); /* Light green text */
+    display: flex;
+    height: 150px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background-size: cover; /* Ensure the image covers the entire header */
+    background-position: center; /* Center the image in the header */
+}
+
+header .logo {
+    font-size: 40px; /* Adjust size as needed */
+    margin-left: 100px;
+}
+
+header .logo .logo-text {
+    font-weight: bold; /* Make EM bold */
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+    padding: 5px 10px; /* Adjust padding to control the size of the background */
+    border-radius: 5px; /* Optional: adds rounded corners */
+    display: inline-flex; /* Aligns text and emoji together */
+    align-items: center;
+}
+
+header .logo .emoji-icon {
+    font-size: 35px; /* Adjust size as needed */
+    color: rgb(26, 83, 25); /* Medium green for emoji */
+    margin-left: 5px; /* Space between text and emoji */
+}
+
+header .links {
+    font-size: 20px;
+    color: rgb(214, 239, 216); /* Light green */
+    width: 70%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+header .links a {
+    text-decoration: none;
+    color: rgb(214, 239, 216); /* Light green */
+    font-weight: bold; /* Make text bold */
+}
+
+.container {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+   
+}
+
+
+.container h1 {
+    font-size: 80px;
+    margin: 0;
+    font-weight: bold;
+    color: rgb(11, 12, 11); /* Very dark green */
+}
+
+.container p {
+    font-size: 30px;
+    margin: 10px;
+    color: rgb(30, 32, 30); /* Dark green */
+}
+
+.container .form_container {
+    width: 70%;
+    height: 80px;
+    background-color: rgb(26, 83, 25); /* Very dark green */
+    border-radius: 50px; /* Rounded corners for the container */
+    margin: 15px auto; /* Centering the container */
+    display: flex;
+    align-items: center;
+}
+
+.container .form_container i {
+    color: rgb(214, 239, 216); /* Light green */
+    font-size: 30px;
+    padding-left: 30px;
+    margin-top: 1mm; /* Shifts the icon 2 mm down */
+}
+
+.container .form_container form {
+    width: 93%;
+    height: 60%;
+    border: none;
+}
+
+.container .form_container form input {
+    width: 80%;
+    height: 100%; /* Set height */
+    padding: 0 10px; /* Adjust padding for consistency */
+    background-color: transparent;
+    font-size: 16px; /* Font size */
+    border-color: transparent;
+    color: rgb(214, 239, 216); /* Light green for input text */
+}
+
+.container .form_container form input::placeholder {
+    color: rgb(214, 239, 216); /* Light green for placeholder text */
+}
+
+.container .form_container form button {
+    background-color: rgb(214, 239, 216); /* Light green */
+    color: rgb(26, 83, 25); /* Very dark green */
+    height: 50px; /* Set height */
+    width: 150px;
+    padding: 0 10px; /* Adjust padding for consistency */
+    border: transparent; /* Border style */
+    border-radius: 25px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    transition: 0.1s;
+}
+
+.container .form_container form button:hover {
+    background-color: rgb(80, 141, 78); /* Dark green */
+    color: rgb(214, 239, 216); /* Light green */
+}
+
+.container2 {
+    width: 70%;
+    margin: 0 auto;
+    background-color: transparent;
+    height: 400px;
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+}
+
+.container2 .container2_sub1,
+.container2 .container2_sub2 {
+    width: 35%;
+    border-radius: 50px;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    color: rgb(26, 83, 25); /* Very dark green */
+    position: relative; /* Position relative to contain absolutely positioned children */
+}
+
+.container2 .container2_sub1 h2,
+.container2 .container2_sub2 h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 83, 25); /* Dark green */
+}
+
+.container2 .container2_sub1 p,
+.container2 .container2_sub2 p {
+    font-size: 16px;
+    color: rgb(38, 46, 38); /* Medium green */
+}
+
+.container2 .background-image {
+    position: absolute;
+    bottom: -32px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    border-radius: 0 0 50px 50px; /* Matching border-radius for bottom corners */
+}
+
+.container3 {
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container3 p {
+    text-decoration: none;
+    color: rgb(26, 83, 25); /* Very dark green */
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+}
+
+.container3 p::after {
+    content: ''; /* Necessary for the pseudo-element to appear */
+    position: absolute; /* Allows precise positioning */
+    left: 0;
+    bottom: -38px; /* Moves the underline 38px below the text */
+    width: 100%; /* Matches the width of the text */
+    height: 2px; /* Thickness of the underline */
+    background-color: rgb(80, 141, 78); /* Dark green */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out; /* Transition effect */
+}
+
+.container3 p:hover::after {
+    opacity: 1; /* Fade in the underline */
+    height: 2px; /* Ensure the height is visible during hover */
+}
+
+.container3 a:hover {
+    text-decoration: underline;
+}
+
+.styled-line {
+    border: none; /* Remove default border */
+    height: 1px; /* Thickness of the line */
+    background-color: rgba(0, 0, 0, 0.4); /* Line color */
+    margin: 20px 0; /* Space around the line */
+}
+
+.container4 {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    width: 85%;
+    padding: 20px;
+}
+
+.container4 .container4_sub1 {
+    font-size: 20px;
+    width: 30%;
+    background-color: rgb(255, 255, 255); /* White background */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* Subtle shadow */
+    padding: 10px; /* Optional: Add some padding inside the container */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    display: block;
+}
+
+.container4 .container4_sub1 .responsive-img {
+    max-width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Prevent extra space below the image */
+}
+
+.tab-content {
+    display: flex; /* Default display */
+    /* Additional styling for tab content */
+}
+
+.hidden {
+    display: none; /* Hide elements with this class */
+}
+.container5 {
+    background-color: rgba(80, 141, 78, 0);
+    background-image: url('undraw_Graduation_re_gthn.png'); /* Add the path to your image here */
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the background image */
+    border-radius: 12px;
+    padding: 100px;
+    margin: 0;
+    width: 100vw;  /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding is included in the width and height */
+}
+
+
+
+.container5 h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.container5_sub1 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid #e1e5eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f98c;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.step:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+.step_number {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: rgb(26, 83, 25);
+    background-color: rgb(214, 239, 216);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step_content {
+    flex: 1;
+    text-align: left;
+}
+
+.step_content h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.step_content p {
+    font-size: 1.2em;
+    color: #555;
+    font-weight: bold;
+}
+
+.arrow_right {
+    font-size: 1.5em;
+    color: rgb(214, 239, 216);
+}
+
+.block-container {
+    text-align: center; /* Horizontal centering */
+    padding: 20px;
+    background-color: rgb(214, 239, 216); /* Light green */
+}
+
+.block-container h1 {
+    display: inline-block; /* Optional: to prevent the full-width behavior of h2 */
+}
+
+.heading-container {
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(214, 239, 216); /* Light green */
+    margin-top: 20px;
+}
+
+.container2 {
+    width: 70%;
+    margin: 0 auto;
+    background-color: transparent;
+    height: 400px;
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+}
+
+.container2 .container2_sub1,
+.container2 .container2_sub2 {
+    width: 35%;
+    border-radius: 50px;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    background-size: cover;
+    background-position: center;
+    color: rgb(26, 83, 25); /* Very dark green */
+}
+
+.container6 {
+    padding: 50px 20px;
+    background-color: rgba(128, 175, 129, 0.812);
+    background: url('26.jpg') no-repeat center center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.container6-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-left: 50px;
+}
+
+.container6-accordion {
+    width: 60%;
+    min-width: 300px;
+}
+
+.container6-accordion h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: rgb(214, 239, 216);
+}
+
+.accordion-item {
+    margin-bottom: 30px; /* Increase this value to add more space between the boxes */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: left;
+}
+
+.accordion-header {
+    margin: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #508d4ea1;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: left;
+}
+
+.accordion-button {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    color: inherit;
+    cursor: pointer;
+    outline: none;
+    padding: 10px;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between; /* Add space between text and icon */
+    align-items: center;
+}
+
+.accordion-button:hover {
+    background-color: #406d3c;
+}
+
+.accordion-content {
+    display: none;
+    padding: 10px 20px;
+    border-top: 1px solid #ddd;
+    text-align: left;
+}
+
+.accordion-content.show {
+    display: block;
+}
+
+.arrow-icon {
+    transition: transform 0.3s;
+}
+
+.arrow-icon.rotate {
+    transform: rotate(180deg);
+}
+
+
+.container7 {
+    padding: 50px 20px;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-section .row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.google-map {
+    width: 100%;
+    height: 250px;
+    border: 0;
+}
+
+h1.mb-5 {
+    text-align: center;
+}
+
+.col-lg-5 {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.col-lg-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ms-auto {
+    margin-left: auto;
+}
