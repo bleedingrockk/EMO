@@ -62,7 +62,6 @@ header .links a {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-   
 }
 
 
@@ -256,7 +255,7 @@ header .links a {
 }
 .container5 {
     background-color: rgba(80, 141, 78, 0);
-    background-image: url('undraw_Graduation_re_gthn.png'); /* Add the path to your image here */
+    background-image: url('../images/container_5_background.png'); /* Add the path to your image here */
     background-size: cover; /* Ensure the image covers the entire container */
     background-position: center; /* Center the background image */
     border-radius: 12px;
@@ -379,7 +378,7 @@ header .links a {
 .container6 {
     padding: 50px 20px;
     background-color: rgba(128, 175, 129, 0.812);
-    background: url('26.jpg') no-repeat center center;
+    background: url('../images/container_6_bg.jpg') no-repeat center center;
     background-size: cover;
     width: 100vw;
     height: 100vh;
