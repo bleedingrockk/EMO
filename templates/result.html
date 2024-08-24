@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/style.css" rel="stylesheet">
+    <title>YouTube Search</title>
+</head>
+<body>
+    <h1>YouTube Search</h1>
+    <form action="/" method="post">
+        <label for="query">Search query:</label>
+        <input type="text" id="query" name="query" required>
+        <input type="submit" value="Search">
+    </form>
+
+    {% if results %}
+        <h2>Search Results</h2>
+        <form action="/" method="post">
+            <input type="hidden" name="query" value="{{ request.form.get('query') }}">
+            <ul>
+                {% for video_id, title in results %}
+                    <li>
+                        {{ loop.index }}. {{ title }} (Video ID: {{ video_id }})
+                        <button type="submit" name="select" value="{{ loop.index0 }}">Select</button>
+                    </li>
+                {% endfor %}
+
+
+            </ul>
+        </form>
+    {% endif %}
+
+    {% if video_details %}
+        <h2>Video Details</h2>
+        <p><strong>Title:</strong> {{ video_details.title }}</p>
+        <p><strong>Description:</strong> {{ video_details.description }}</p>
+        <p><strong>Views:</strong> {{ video_details.view_count }}</p>
+        <p><strong>Likes:</strong> {{ video_details.like_count }}</p>
+        <p><strong>Comments:</strong> {{ video_details.comment_count }}</p>
+        <p><strong>Duration:</strong> {{ video_details.duration }}</p>
+    {% endif %}
+
+    {% if captions %}
+        <h2>Captions</h2>
+        <ul>
+            {% for caption in captions %}
+                <li><strong>Start:</strong> {{ caption.start }}s, <strong>Duration:</strong> {{ caption.duration }}s - {{ caption.text }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+</body>
+</html>
