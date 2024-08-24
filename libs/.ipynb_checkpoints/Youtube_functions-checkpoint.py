@@ -1,6 +1,6 @@
 import os
 from googleapiclient.discovery import build
-from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, VideoUnavailable, NoTranscriptFound
+from youtube_transcript_api import YouTubeTranscriptApi
 
 api_key = 'AIzaSyA_GneRzf-BNyXTf-rogarI-fuVJsvG-YE'
 
@@ -63,21 +63,18 @@ def get_video_details(video_id, api_key):
 
 def get_captions(video_id):
     try:
-        # Fetch the transcript for the given video ID
-        transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
-        
-        # Process the transcript into a list of dictionaries
-        captions_list = [{'start': caption['start'], 'duration': caption['duration'], 'text': caption['text']} for caption in transcript]
-        
+        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+        transcript = transcript_list.find_transcript(['en'])
+        captions = transcript.fetch()
+
+        captions_list = []
+        for caption in captions:
+            start = caption['start']
+            duration = caption['duration']
+            text = caption['text']
+            captions_list.append({'text': text})
+
         return captions_list
 
-    except TranscriptsDisabled:
-        return "Transcripts are disabled for this video."
-    except VideoUnavailable:
-        return "The video is unavailable or has no transcript."
-    except NoTranscriptFound:
-        return "No transcript found for the requested language."
     except Exception as e:
         return f"Error fetching captions: {str(e)}"
-
-
