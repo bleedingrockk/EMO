@@ -1,35 +1,35 @@
-from flask import Flask, render_template, request
-import time
-# from googleapiclient.discovery import build
-# from youtube_transcript_api import YouTubeTranscriptApi
+from flask import Flask, request, render_template, redirect, url_for
+from libs.Youtube_functions import *  # Adjust import based on your file structure
 
 app = Flask(__name__)
 
+api_key = 'AIzaSyA_GneRzf-BNyXTf-rogarI-fuVJsvG-YE'
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    video_id = None
+    search_results = None
+
     if request.method == 'POST':
-        api_key = request.form['api_key']
-        query = request.form['query']
-        video_id = youtube_search(api_key, query)
-    return render_template('index.html', video_id=video_id)
+        query = request.form.get('query')
+        if query:
+            search_results = youtube_search(api_key, query)
+        return render_template('index.html', results=search_results)
 
-def youtube_search(api_key, query, max_results=5):
-    youtube = build('youtube', 'v3', developerKey=api_key)
-    search_response = youtube.search().list(
-        q=query,
-        part='id,snippet',
-        maxResults=max_results
-    ).execute()
+    return render_template('index.html', results=search_results)
 
-    results = []
-    for item in search_response.get('items', []):
-        video_id = item['id'].get('videoId')
-        title = item['snippet'].get('title')
-        if video_id:
-            results.append((video_id, title))
+@app.route('/result', methods=['GET'])
+def result():
+    selected_index = request.args.get('select')
+    video_details = None
+    captions = None
 
-    return results[0][0] if results else None
+    if selected_index is not None:
+        search_results = request.args.getlist('results')  # Get the search results passed as a list
+        selected_video_id = search_results[int(selected_index)][0]
+        video_details = get_video_details(selected_video_id, api_key)
+        captions = get_captions(selected_video_id)
+
+    return render_template('result.html', video_details=video_details, captions=captions)
 
 if __name__ == '__main__':
     app.run(debug=True)
