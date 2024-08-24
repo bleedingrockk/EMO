@@ -13,24 +13,7 @@
         <input type="text" id="query" name="query" required>
         <input type="submit" value="Search">
     </form>
-
-    {% if results %}
-        <h2>Search Results</h2>
-        <form action="/" method="post">
-            <input type="hidden" name="query" value="{{ request.form.get('query') }}">
-            <ul>
-                {% for video_id, title in results %}
-                    <li>
-                        {{ loop.index }}. {{ title }} (Video ID: {{ video_id }})
-                        <button type="submit" name="select" value="{{ loop.index0 }}">Select</button>
-                    </li>
-                {% endfor %}
-
-
-            </ul>
-        </form>
-    {% endif %}
-
+        
     {% if video_details %}
         <h2>Video Details</h2>
         <p><strong>Title:</strong> {{ video_details.title }}</p>

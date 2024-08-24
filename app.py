@@ -10,7 +10,7 @@ def index():
     search_results = None
 
     if request.method == 'POST':
-        query = request.form.get('query')
+        query = request.form.get('value1')
         if query:
             search_results = youtube_search(api_key, query)
         return render_template('index.html', results=search_results)

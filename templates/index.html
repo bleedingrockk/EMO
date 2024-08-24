@@ -35,11 +35,32 @@
             <i class="fa-solid fa-magnifying-glass fa-beat"></i>
             
             <form action="/" method="post">
-                <input type="text" id="value1" placeholder="Paste a YouTube link below to analyze its sentiment...." name="value1" required>          
+                <input type="text" id="value1" name="value1" placeholder="Paste a YouTube link below to analyze its sentiment...." required>          
                 <button type="submit">Analyze</button>
             </form>
         </div>
     </div>
+
+<!-- -------------------------- search output ---------------------------------------------------- -->
+<h2 id="search_result">Search Results:</h2>
+
+<div class="container1">
+    {% if results %}
+            {% for video in results %}
+            <div class="container1_sub1">
+
+                    <a href="{{ url_for('result', select=loop.index0, results=results) }}">
+                        <img src="{{ video[2] }}" alt="Thumbnail">
+                    </a>
+
+                    <a href="{{ url_for('result', select=loop.index0, results=results) }}">
+                        {{ video[1] }} <!-- Display the video title -->
+                    </a>
+            </div>
+
+            {% endfor %}
+    {% endif %}
+</div>
     <!-- ------------------------------ Container 2----------------------------------------- -->
     <!-- Second with details -->
     <div class="container2">

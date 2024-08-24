@@ -21,8 +21,22 @@ def youtube_search(api_key, query, max_results=5):
     for item in search_response.get('items', []):
         video_id = item['id'].get('videoId')
         title = item['snippet'].get('title')
+        
+        # Attempt to get the highest available thumbnail
+        thumbnails = item['snippet'].get('thumbnails', {})
+        if 'maxres' in thumbnails:
+            thumbnail_url = thumbnails['maxres']['url']
+        elif 'standard' in thumbnails:
+            thumbnail_url = thumbnails['standard']['url']
+        elif 'high' in thumbnails:
+            thumbnail_url = thumbnails['high']['url']
+        elif 'medium' in thumbnails:
+            thumbnail_url = thumbnails['medium']['url']
+        else:
+            thumbnail_url = thumbnails.get('default', {}).get('url', '')
+
         if video_id:
-            results.append((video_id, title))
+            results.append((video_id, title, thumbnail_url))  # Include the thumbnail URL in the results
 
     return results
 
