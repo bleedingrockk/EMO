@@ -67,7 +67,7 @@ def get_captions(video_id):
         transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
         
         # Process the transcript into a list of dictionaries
-        captions_list = [{'start': caption['start'], 'duration': caption['duration'], 'text': caption['text']} for caption in transcript]
+        captions_list = [{'text': caption['text']} for caption in transcript]
         
         return captions_list
 

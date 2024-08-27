@@ -23,7 +23,7 @@
         <h2>Captions</h2>
         <p>
             {% for caption in captions %}
-                {{ caption.text }}{% if not loop.last %} {% endif %}
+                {{ caption.text }}{% if not loop.last %}, {% endif %}
             {% endfor %}
         </p>
     {% endif %}
