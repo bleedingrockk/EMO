@@ -60,7 +60,7 @@ def get_video_details(video_id, api_key):
 
     return video_details
 
-
+# This function will use video ID to get captions from the video from youtube
 def get_captions(video_id):
     try:
         # Fetch the transcript for the given video ID
@@ -80,4 +80,60 @@ def get_captions(video_id):
     except Exception as e:
         return f"Error fetching captions: {str(e)}"
 
+# This function will return comments with replies from youtuve using video ID
+def get_comments_with_replies(video_id, api_key, max_results=1000):
+    """
+    This function retrieves comments for a YouTube video, including replies,
+    up to a maximum of 10000 comments.
+
+    Args:
+        video_id: The ID of the YouTube video (e.g., "dQw4w9WgXcQ").
+        api_key: Your YouTube Data API key.
+        max_results: The maximum number of comments to retrieve per page (default: 100).
+
+    Returns:
+        A list of dictionaries containing comment text, author name (if available),
+        and a list of replies (if any) for each comment, up to 10000 comments total.
+    """
+    youtube = build('youtube', 'v3', developerKey=api_key)
+
+    all_comments = []
+    next_page_token = None
+    comment_count = 0  # Track the total number of comments retrieved
+
+    while True:
+        comments_response = youtube.commentThreads().list(
+            part="snippet,replies",
+            videoId=video_id,
+            textFormat="plainText",
+            maxResults=max_results,
+            pageToken=next_page_token  # Include pageToken if available
+        ).execute()
+
+        items = comments_response.get("items", [])
+        for item in items:
+            comment_data = item["snippet"]["topLevelComment"]["snippet"]
+            comment = {
+                "textDisplay": comment_data["textDisplay"],
+                "authorDisplayName": comment_data.get("authorDisplayName"),
+                "replies": []  # Empty list to store replies
+            }
+            # Check if replies exist and extract them
+            replies = item.get("replies", {}).get("comments", [])
+            for reply in replies:
+                reply_data = reply["snippet"]
+                comment["replies"].append({
+                    "textDisplay": reply_data["textDisplay"],
+                    "authorDisplayName": reply_data.get("authorDisplayName")
+                })
+            all_comments.append(comment)
+            comment_count += 1  # Update comment count
+
+        next_page_token = comments_response.get("nextPageToken")
+
+        # Stop fetching comments if total count reaches 1000 or there are no more pages
+        if comment_count >= 1000 or not next_page_token:
+            break
+    #Returns a list of dictionaries
+    return all_comments
 

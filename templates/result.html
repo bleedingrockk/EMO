@@ -18,7 +18,7 @@
         <p><strong>Comments:</strong> {{ video_details.comment_count }}</p>
         <p><strong>Duration:</strong> {{ video_details.duration }}</p>
     {% endif %}
-
+<!-- ---------------Captions -------------------- -->
     {% if captions %}
         <h2>Captions</h2>
         <p>
@@ -27,7 +27,26 @@
             {% endfor %}
         </p>
     {% endif %}
-
+<!-- ------------------ comments -------------------- -->
+    {% if comments %}
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.authorDisplayName }}:</strong> {{ comment.textDisplay }}
+                {% if comment.replies %}
+                    <ul>
+                        {% for reply in comment.replies %}
+                            <li>
+                                <strong>{{ reply.authorDisplayName }}:</strong> {{ reply.textDisplay }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
 </body>
 </html>

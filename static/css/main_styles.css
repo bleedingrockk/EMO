@@ -141,7 +141,7 @@ header .links a {
 
 .container1 {
     padding: 15px;
-    background-color: gray; 
+    background-color: transparent; 
     display: flex;
     justify-content: space-around;
 }

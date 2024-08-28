@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for, session
-from libs.Youtube_functions import youtube_search, get_video_details, get_captions
+from libs.Youtube_functions import *
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Change this to a random, secure value
@@ -32,6 +32,8 @@ def result():
             selected_video_id = search_results[selected_index][0]
             video_details = get_video_details(selected_video_id, api_key)
             captions = get_captions(selected_video_id)
+            comments_data = get_comments_with_replies(selected_video_id, api_key)  # Get comments with replies
+        
 
     return render_template('result.html', video_details=video_details, captions=captions)
 
