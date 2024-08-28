@@ -64,7 +64,6 @@ header .links a {
     flex-direction: column;
 }
 
-
 .container h1 {
     font-size: 80px;
     margin: 0;
@@ -99,6 +98,9 @@ header .links a {
     width: 93%;
     height: 60%;
     border: none;
+    display: flex; /* Align input and button on the same line */
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Distribute space evenly */
 }
 
 .container .form_container form input {
@@ -109,6 +111,7 @@ header .links a {
     font-size: 16px; /* Font size */
     border-color: transparent;
     color: rgb(214, 239, 216); /* Light green for input text */
+    margin-right: 10px; /* Add space between input and button */
 }
 
 .container .form_container form input::placeholder {
@@ -120,7 +123,6 @@ header .links a {
     color: rgb(26, 83, 25); /* Very dark green */
     height: 50px; /* Set height */
     width: 150px;
-    padding: 0 10px; /* Adjust padding for consistency */
     border: transparent; /* Border style */
     border-radius: 25px; /* Rounded corners */
     font-size: 16px; /* Font size */
@@ -131,6 +133,7 @@ header .links a {
     background-color: rgb(80, 141, 78); /* Dark green */
     color: rgb(214, 239, 216); /* Light green */
 }
+
 
 #search_result{
     text-align: center;
