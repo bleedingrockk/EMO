@@ -7,46 +7,75 @@
     <title>YouTube Search</title>
 </head>
 <body>
-    <h1>YouTube Search</h1>
+    
+    <h1>YouTube Search Results</h1>
 
-    {% if video_details %}
-        <h2>Video Details</h2>
-        <p><strong>Title:</strong> {{ video_details.title }}</p>
-        <p><strong>Description:</strong> {{ video_details.description }}</p>
-        <p><strong>Views:</strong> {{ video_details.view_count }}</p>
-        <p><strong>Likes:</strong> {{ video_details.like_count }}</p>
-        <p><strong>Comments:</strong> {{ video_details.comment_count }}</p>
-        <p><strong>Duration:</strong> {{ video_details.duration }}</p>
-    {% endif %}
-<!-- ---------------Captions -------------------- -->
-    {% if captions %}
-        <h2>Captions</h2>
-        <p>
-            {% for caption in captions %}
-                {{ caption.text }}{% if not loop.last %}, {% endif %}
+    <div class="container video-details">
+        {% if video_details %}
+            <h2>Video Details</h2>
+            <p><strong>Title:</strong> {{ video_details.title }}</p>
+            <p><strong>Description:</strong> {{ video_details.description }}</p>
+            <p><strong>Views:</strong> {{ video_details.view_count }}</p>
+            <p><strong>Likes:</strong> {{ video_details.like_count }}</p>
+            <p><strong>Comments:</strong> {{ video_details.comment_count }}</p>
+            <p><strong>Duration:</strong> {{ video_details.duration }}</p>
+        {% endif %}
+    </div>
+
+    <div class="container captions">
+        {% if captions %}
+            <h2>Captions</h2>
+            <p>
+                {% for caption in captions %}
+                    {{ caption.text }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        {% endif %}
+    </div>
+
+    <div class="container comments">
+        {% if comments %}
+        <h2>Comments</h2>
+        <ul>
+            {% for comment in comments %}
+                <li>
+                    <strong>{{ comment.authorDisplayName }}:</strong> {{ comment.textDisplay }}
+                    {% if comment.replies %}
+                        <ul>
+                            {% for reply in comment.replies %}
+                                <li>
+                                    <strong>{{ reply.authorDisplayName }}:</strong> {{ reply.textDisplay }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
             {% endfor %}
-        </p>
-    {% endif %}
-<!-- ------------------ comments -------------------- -->
-    {% if comments %}
-    <h2>Comments</h2>
-    <ul>
-        {% for comment in comments %}
-            <li>
-                <strong>{{ comment.authorDisplayName }}:</strong> {{ comment.textDisplay }}
-                {% if comment.replies %}
-                    <ul>
-                        {% for reply in comment.replies %}
-                            <li>
-                                <strong>{{ reply.authorDisplayName }}:</strong> {{ reply.textDisplay }}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="container top-commenters">
+        {% if top_commenters %}
+            <h2>Top Commenters</h2>
+            <ul>
+                {% for commenter, count in top_commenters %}
+                    <li><strong>{{ commenter }}:</strong> {{ count }} comments</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <div class="container top-emojis">
+        {% if top_10_emojis %}
+        <h2>Top 10 Emojis</h2>
+        <ul>
+            {% for emoji, count in top_10_emojis %}
+                <li>{{ emoji }} ({{ count }} times)</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 
 </body>
 </html>

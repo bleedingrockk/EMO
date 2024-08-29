@@ -1,20 +1,26 @@
 import os
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, VideoUnavailable, NoTranscriptFound
+from collections import Counter
 
 api_key = 'AIzaSyA_GneRzf-BNyXTf-rogarI-fuVJsvG-YE'
 
 # This function will search the query on youtube and return a list of top 5 similar videos and prompt user to select one and return the video id
 def youtube_search(api_key, query, max_results=5):
     # Build the YouTube service
+    print("Building YouTube service...")
     youtube = build('youtube', 'v3', developerKey=api_key)
 
     # Call the search.list method to perform a search
+    print(f"Performing search with query: '{query}' and max_results: {max_results}...")
     search_response = youtube.search().list(
         q=query,
         part='id,snippet',
         maxResults=max_results
     ).execute()
+
+    # Debugging the raw search response
+    print("Raw search response received:", search_response)
 
     # Collect the search results
     results = []
@@ -24,6 +30,8 @@ def youtube_search(api_key, query, max_results=5):
         
         # Attempt to get the highest available thumbnail
         thumbnails = item['snippet'].get('thumbnails', {})
+        print(f"Thumbnails data: {thumbnails}")
+        
         if 'maxres' in thumbnails:
             thumbnail_url = thumbnails['maxres']['url']
         elif 'standard' in thumbnails:
@@ -35,10 +43,19 @@ def youtube_search(api_key, query, max_results=5):
         else:
             thumbnail_url = thumbnails.get('default', {}).get('url', '')
 
+        print(f"Selected thumbnail URL: {thumbnail_url}")
+
         if video_id:
             results.append((video_id, title, thumbnail_url))  # Include the thumbnail URL in the results
+            print(f"Appended result - Video ID: {video_id}, Title: {title}, Thumbnail: {thumbnail_url}")
 
+    # Final results
+    print("Final results collected:", results)
     return results
+
+
+
+
 
 
 # This function will use video ID to get details about the video from youtube
@@ -60,6 +77,10 @@ def get_video_details(video_id, api_key):
 
     return video_details
 
+
+
+
+
 # This function will use video ID to get captions from the video from youtube
 def get_captions(video_id):
     try:
@@ -80,8 +101,11 @@ def get_captions(video_id):
     except Exception as e:
         return f"Error fetching captions: {str(e)}"
 
-# This function will return comments with replies from youtuve using video ID
-def get_comments_with_replies(video_id, api_key, max_results=1000):
+
+
+
+# This function will return comments with replies from youtube using video ID
+def get_comments_with_replies(video_id, api_key, max_results=100):
     """
     This function retrieves comments for a YouTube video, including replies,
     up to a maximum of 10000 comments.
@@ -132,8 +156,95 @@ def get_comments_with_replies(video_id, api_key, max_results=1000):
         next_page_token = comments_response.get("nextPageToken")
 
         # Stop fetching comments if total count reaches 1000 or there are no more pages
-        if comment_count >= 1000 or not next_page_token:
+        if comment_count >= 100 or not next_page_token:
             break
     #Returns a list of dictionaries
     return all_comments
 
+
+
+
+#Get list of comments and commentors
+def save_comments_as_list(comments_data):
+    """
+    Convert comments and their replies into separate lists of authors and text.
+
+    Args:
+        comments_data: A list of dictionaries containing comment and reply details.
+
+    Returns:
+        A tuple containing two lists:
+        - A list of authors.
+        - A list of comment texts.
+    """
+    author_list = []
+    text_list = []
+
+    for comment in comments_data:
+        # Check and save 'authorDisplayName' and 'textDisplay' at the top level
+        if 'authorDisplayName' in comment and 'textDisplay' in comment:
+            author_list.append(str(comment['authorDisplayName']))
+            text_list.append(str(comment['textDisplay']))
+
+        # Check for replies and save 'authorDisplayName' and 'textDisplay' in replies
+        if 'replies' in comment:
+            for reply in comment['replies']:
+                if 'authorDisplayName' in reply and 'textDisplay' in reply:
+                    author_list.append(str(reply['authorDisplayName']))
+                    text_list.append(str(reply['textDisplay']))
+
+    return author_list, text_list
+
+
+
+
+# Get top commentors
+
+def get_top_commenters(author_list):
+    """
+    Get the top 10 most common commenters from the list.
+
+    Args:
+        author_list: A list of author names.
+
+    Returns:
+        A list of tuples containing the top 10 usernames and their counts.
+    """
+    # Count the occurrences of each username
+    username_counts = Counter(author_list)
+
+    # Get the top 10 most common usernames
+    top_10_usernames = username_counts.most_common(10)
+
+    return top_10_usernames
+
+
+
+
+
+# Get Emojis data
+import emoji
+
+def extract_and_rank_top_emojis(text_list):
+    """
+    Extract emojis from a list of strings and return the top 10 most common emojis.
+
+    Args:
+        text_list: A list of strings from which to extract emojis.
+    
+    Returns:
+        A list of tuples containing the top 10 most common emojis and their counts.
+    """
+    emojis_list = []
+
+    # Extract emojis from each text in the list
+    for text in text_list:
+        emojis_list.extend([e['emoji'] for e in emoji.emoji_list(text)])
+
+    # Count the occurrences of each emoji
+    emoji_counts = Counter(emojis_list)
+
+    # Get the top 10 most common emojis
+    top_10_emojis = emoji_counts.most_common(10)
+
+    return top_10_emojis
