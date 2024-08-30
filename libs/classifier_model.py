@@ -2,7 +2,7 @@ from transformers import BertForSequenceClassification, BertTokenizer
 import torch
 
 # Path to the directory where the model and tokenizer are saved
-model_path = 'D:/Christ University/4 Trimester/WEB PROJECT/Gir_dir/EMO/saved_model'
+model_path = 'libs/bert_model/saved_model/'
 # Load the model and tokenizer
 try:
     model = BertForSequenceClassification.from_pretrained(model_path)
@@ -54,7 +54,8 @@ categories = ["Anger/Disgust", "Happy/Joy", "Neutral", "Question", "Sad", "Sugge
 my_dict = {key: [] for key in categories}
 print("Initialized dictionary:", my_dict)
 
-def classify_text(text_list):
+def classify_text(text_list,my_dict):
+    my_dict = {key: [] for key in categories}
     print('trying big one')
     try:
         for text in text_list:
@@ -70,4 +71,5 @@ def classify_text(text_list):
                     print(f"Category '{category}' not in predefined categories")
     except Exception as e:
         print(f"Error classifying text: {e}")
+    return my_dict
 

@@ -77,27 +77,21 @@
         {% endif %}
     </div>
 
-    {% if text_list %}
-
-        {% for text in cleaned_list %}
-            <li>{{ text }}</li>
-            <p> . </p>
-        {% endfor %}
-        
-
-    {% endif %}
-
-    {% if categorised_dict%}
-        <h2>Categorised Texts</h2>
+    <div class="text_cat_container">
         {% for category, texts in categorised_dict.items() %}
-            <h3>{{ category }}</h3>
-            <ul>
-                {% for text in texts %}
-                    <li>{{ text }}</li>
-                {% endfor %}
-            </ul>
+            {% if texts %}  <!-- Check if there are texts for this category -->
+                <div class="Text_category1">
+                    <h2>{{ category }}</h2>
+                    <ul>
+                        {% for text in texts %}
+                            <li>{{ text }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
         {% endfor %}
-    {% endif %}
-    {% endfor %}
+    </div>
+
+
 </body>
 </html>
