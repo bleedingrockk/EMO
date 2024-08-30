@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 from libs.Youtube_functions import *
+from libs.bert_model.classifier_model import *
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Change this to a random, secure value
@@ -28,6 +29,8 @@ def result():
     text_list = []
     top_commenters = []
     top_10_emojis = []
+    cleaned_list = []
+    categorised_dict = {}
 
     search_results = session.get('search_results', [])  # Retrieve search results from session
 
@@ -49,10 +52,17 @@ def result():
                 # Get the top 10 most common emojis
                 top_10_emojis = extract_and_rank_top_emojis(text_list)
 
+
+                #cleaned text
+                cleaned_list = cleaned_strings_list(text_list)
+
+                #Classified comments
+                categorised_dict = classify_text(cleaned_list)
+
         except ValueError:
             pass  # Handle invalid index here if necessary
 
-    return render_template('result.html', video_details=video_details, captions=captions, authors=author_list, texts=text_list, top_commenters=top_commenters, top_10_emojis=top_10_emojis)
+    return render_template('result.html', video_details=video_details, captions=captions, authors=author_list, text_list=text_list, top_commenters=top_commenters, top_10_emojis=top_10_emojis, cleaned_list=cleaned_list, categorised_dict = categorised_dict)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -77,5 +77,27 @@
         {% endif %}
     </div>
 
+    {% if text_list %}
+
+        {% for text in cleaned_list %}
+            <li>{{ text }}</li>
+            <p> . </p>
+        {% endfor %}
+        
+
+    {% endif %}
+
+    {% if categorised_dict%}
+        <h2>Categorised Texts</h2>
+        {% for category, texts in categorised_dict.items() %}
+            <h3>{{ category }}</h3>
+            <ul>
+                {% for text in texts %}
+                    <li>{{ text }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {% endif %}
+    {% endfor %}
 </body>
 </html>

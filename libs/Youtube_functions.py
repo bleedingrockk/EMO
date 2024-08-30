@@ -2,57 +2,78 @@ import os
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, VideoUnavailable, NoTranscriptFound
 from collections import Counter
+import nltk
+# nltk.download('stopwords')
+from nltk.corpus import stopwords
+from googleapiclient.discovery import build
+from datetime import timedelta
+import isodate
 
 api_key = 'AIzaSyA_GneRzf-BNyXTf-rogarI-fuVJsvG-YE'
 
 # This function will search the query on youtube and return a list of top 5 similar videos and prompt user to select one and return the video id
-def youtube_search(api_key, query, max_results=5):
+from googleapiclient.discovery import build
+import isodate
+
+def youtube_search(api_key, query, max_results=5, initial_results=30):
     # Build the YouTube service
     print("Building YouTube service...")
     youtube = build('youtube', 'v3', developerKey=api_key)
 
-    # Call the search.list method to perform a search
-    print(f"Performing search with query: '{query}' and max_results: {max_results}...")
+    # Call the search.list method to perform a search, retrieving a larger set of initial results
     search_response = youtube.search().list(
         q=query,
         part='id,snippet',
-        maxResults=max_results
+        maxResults=initial_results
     ).execute()
-
-    # Debugging the raw search response
-    print("Raw search response received:", search_response)
 
     # Collect the search results
     results = []
+    video_ids = []
+
     for item in search_response.get('items', []):
         video_id = item['id'].get('videoId')
-        title = item['snippet'].get('title')
-        
-        # Attempt to get the highest available thumbnail
-        thumbnails = item['snippet'].get('thumbnails', {})
-        print(f"Thumbnails data: {thumbnails}")
-        
-        if 'maxres' in thumbnails:
-            thumbnail_url = thumbnails['maxres']['url']
-        elif 'standard' in thumbnails:
-            thumbnail_url = thumbnails['standard']['url']
-        elif 'high' in thumbnails:
-            thumbnail_url = thumbnails['high']['url']
-        elif 'medium' in thumbnails:
-            thumbnail_url = thumbnails['medium']['url']
-        else:
-            thumbnail_url = thumbnails.get('default', {}).get('url', '')
-
-        print(f"Selected thumbnail URL: {thumbnail_url}")
-
         if video_id:
-            results.append((video_id, title, thumbnail_url))  # Include the thumbnail URL in the results
-            print(f"Appended result - Video ID: {video_id}, Title: {title}, Thumbnail: {thumbnail_url}")
+            video_ids.append(video_id)
+
+    if video_ids:
+        # Get video details including duration
+        video_response = youtube.videos().list(
+            id=','.join(video_ids),
+            part='contentDetails'
+        ).execute()
+
+        for i, video in enumerate(video_response.get('items', [])):
+            duration = video['contentDetails']['duration']
+            duration_seconds = isodate.parse_duration(duration).total_seconds()
+
+            # Only consider videos longer than 100 seconds
+            if duration_seconds > 100:
+                title = search_response['items'][i]['snippet']['title']
+                thumbnails = search_response['items'][i]['snippet'].get('thumbnails', {})
+
+                # Select the best available thumbnail
+                if 'maxres' in thumbnails:
+                    thumbnail_url = thumbnails['maxres']['url']
+                elif 'standard' in thumbnails:
+                    thumbnail_url = thumbnails['standard']['url']
+                elif 'high' in thumbnails:
+                    thumbnail_url = thumbnails['high']['url']
+                elif 'medium' in thumbnails:
+                    thumbnail_url = thumbnails['medium']['url']
+                else:
+                    thumbnail_url = thumbnails.get('default', {}).get('url', '')
+
+                # Append only if the video meets the duration criteria
+                results.append((video_ids[i], title, thumbnail_url))
+                print(f"Appended result - Video ID: {video_ids[i]}, Title: {title}, Thumbnail: {thumbnail_url}, Duration: {duration_seconds} seconds")
+
+                # Stop once we have enough results
+                if len(results) >= max_results:
+                    break
 
     # Final results
-    print("Final results collected:", results)
     return results
-
 
 
 
@@ -248,3 +269,40 @@ def extract_and_rank_top_emojis(text_list):
     top_10_emojis = emoji_counts.most_common(10)
 
     return top_10_emojis
+
+
+
+
+# Fucntion to clean the comments and store them as lists of strings
+def clean_string(text):
+    
+    #Args: A string from which to extract
+    # Example cleaning operations: remove punctuation and convert to lowercase
+    cleaned_text = text.strip().lower()  # Remove leading/trailing whitespace and convert to lowercase
+    cleaned_text = ''.join([c for c in cleaned_text if c.isalnum() or c.isspace()])  # Remove non-alphanumeric characters except spaces
+    
+    # Split the cleaned text into words
+    words = cleaned_text.split()
+    
+    # Load stop words from nltk
+    stop_words = set(stopwords.words('english'))
+    
+    # Remove stop words
+    filtered_words = [word for word in words if word not in stop_words]
+    
+    # Join the filtered words back into a string
+    cleaned_text_without_stopwords = ' '.join(filtered_words)
+
+    return cleaned_text_without_stopwords
+
+
+def cleaned_strings_list(text_list):
+
+    #Args: A list of strings from which to extract
+    # Returns: A cleaned string with punctuation removed and all characters converted to lowercase
+
+    cleaned_list = []
+    for text in text_list:
+        cleaned_text = clean_string(text)
+        cleaned_list.append(cleaned_text)
+    return cleaned_list
