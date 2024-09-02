@@ -2,7 +2,7 @@ from transformers import BertForSequenceClassification, BertTokenizer
 import torch
 
 # Path to the directory where the model and tokenizer are saved
-model_path = 'libs/bert_model/saved_model/'
+model_path = 'libs/bert_model/'
 # Load the model and tokenizer
 try:
     model = BertForSequenceClassification.from_pretrained(model_path)
