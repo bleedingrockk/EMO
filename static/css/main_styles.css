@@ -111,7 +111,8 @@ header .links a {
     font-size: 16px; /* Font size */
     border-color: transparent;
     color: rgb(214, 239, 216); /* Light green for input text */
-    margin-right: 10px; /* Add space between input and button */
+    margin-right: 10px;
+    margin-left: 15px; /* Add space between input and button */
 }
 
 .container .form_container form input::placeholder {

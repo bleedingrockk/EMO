@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 from libs.Youtube_functions import *
 from libs.classifier_model import *
+from libs.n_gram import *
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Change this to a random, secure value
@@ -31,6 +32,8 @@ def result():
     top_10_emojis = []
     cleaned_list = []
     categorised_dict = {}
+    top_10_bigrams = ()
+    top_5_trigrams = ()
 
     search_results = session.get('search_results', [])  # Retrieve search results from session
 
@@ -57,8 +60,11 @@ def result():
                 cleaned_list = cleaned_strings_list(text_list)
 
                 #Classified comments
-                categorised_dict = {key: [] for key in categories}
-                classify_text(text_list)
+                categorised_dict = classify_text(text_list)
+
+                # Get the top 10 bigrams and top 5 trigrams
+                top_10_bigrams = get_top_ngrams(text_list, 2, 10)
+                top_5_trigrams = get_top_ngrams(text_list, 3, 5)
 
         except ValueError:
             pass  # Handle invalid index here if necessary
@@ -71,7 +77,9 @@ def result():
                             top_commenters=top_commenters, 
                             top_10_emojis=top_10_emojis, 
                             cleaned_list=cleaned_list, 
-                            categorised_dict = categorised_dict)
+                            categorised_dict = categorised_dict,
+                            top_10_bigrams = top_10_bigrams,
+                            top_5_trigrams = top_5_trigrams)
 
 if __name__ == '__main__':
     app.run(debug=True)

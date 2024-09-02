@@ -126,7 +126,7 @@ def get_captions(video_id):
 
 
 # This function will return comments with replies from youtube using video ID
-def get_comments_with_replies(video_id, api_key, max_results=100):
+def get_comments_with_replies(video_id, api_key, max_results=1000):
     """
     This function retrieves comments for a YouTube video, including replies,
     up to a maximum of 10000 comments.
@@ -177,7 +177,7 @@ def get_comments_with_replies(video_id, api_key, max_results=100):
         next_page_token = comments_response.get("nextPageToken")
 
         # Stop fetching comments if total count reaches 1000 or there are no more pages
-        if comment_count >= 10 or not next_page_token:
+        if comment_count >= 100 or not next_page_token:
             break
     #Returns a list of dictionaries
     return all_comments

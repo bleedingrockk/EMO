@@ -48,28 +48,29 @@ def predict_emotion(text):
         print(f"Error predicting emotion: {e}")
         return 'Error'
 
-# Initialize dictionary with categories
-categories = ["Anger/Disgust", "Happy/Joy", "Neutral", "Question", "Sad", "Suggestion", "Surprise", "Thankful"]
-
-my_dict = {key: [] for key in categories}
-print("Initialized dictionary:", my_dict)
-
-def classify_text(text_list,my_dict):
+def classify_text(text_list):
+    # Initialize the dictionary with categories as keys and empty lists as values
+    # Initialize dictionary with categories
+    categories = ["Anger/Disgust", "Happy/Joy", "Neutral", "Question", "Sad", "Suggestion", "Surprise", "Thankful"]
     my_dict = {key: [] for key in categories}
-    print('trying big one')
+
     try:
         for text in text_list:
+            # Only process texts longer than 10 characters
             if len(text) > 10:
-                print('length passed')
+                # Predict the emotion category for the text
                 category = predict_emotion(text)
-                print('value predicted')
+                
+                # Check if the predicted category is in the predefined categories
                 if category in my_dict:
-                    print('adding')
+                    print(f'Adding text to category: {category}')
                     my_dict[category].append(text)
-                    print('added')
+                    print('Text added successfully')
                 else:
                     print(f"Category '{category}' not in predefined categories")
-    except Exception as e:
+    except Exception as e: 
         print(f"Error classifying text: {e}")
+
     return my_dict
+
 

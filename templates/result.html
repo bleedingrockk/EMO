@@ -91,6 +91,21 @@
             {% endif %}
         {% endfor %}
     </div>
+    <div class="bigramsContainer">
+        <h1>Top 10 Bigrams</h1>
+    <ul>
+        {% for bigram, count in top_10_bigrams %}
+            <li>{{ bigram }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Top 5 Trigrams</h1>
+    <ul>
+        {% for trigram, count in top_5_trigrams %}
+            <li>{{ trigram }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+    </div>
 
 
 </body>
