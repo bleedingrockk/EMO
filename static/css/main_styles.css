@@ -2,13 +2,13 @@
 /* # life is awesome */
 body {
     font-family: Arial, sans-serif;
-    background-color: rgb(214, 239, 216); /* Light green */
+    background-color: #616161; /* Light green */
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: rgb(128, 175, 129); /* Dark green */
+    background-color: #292929; /* Dark green */
     color: rgb(26, 83, 25); /* Light green text */
     display: flex;
     height: 150px;
@@ -41,7 +41,7 @@ header .logo .emoji-icon {
 
 header .links {
     font-size: 20px;
-    color: rgb(214, 239, 216); /* Light green */
+    color: #FFFFFF; /* Light green */
     width: 70%;
     margin-right: 10px;
     display: flex;
@@ -50,7 +50,7 @@ header .links {
 
 header .links a {
     text-decoration: none;
-    color: rgb(214, 239, 216); /* Light green */
+    color: #FFFFFF; /* Light green */
     font-weight: bold; /* Make text bold */
 }
 
@@ -68,7 +68,7 @@ header .links a {
     font-size: 80px;
     margin: 0;
     font-weight: bold;
-    color: rgb(11, 12, 11); /* Very dark green */
+    color: #FFFFFF; /* Very dark green */
 }
 
 .container p {
@@ -80,7 +80,7 @@ header .links a {
 .container .form_container {
     width: 70%;
     height: 80px;
-    background-color: rgb(26, 83, 25); /* Very dark green */
+    background-color: #292929; /* Very dark green */
     border-radius: 50px; /* Rounded corners for the container */
     margin: 15px auto; /* Centering the container */
     display: flex;

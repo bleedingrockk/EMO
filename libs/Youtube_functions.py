@@ -111,10 +111,7 @@ def get_captions(video_id):
         # Process the transcript into a list of dictionaries
         captions_list = [{'text': caption['text']} for caption in transcript]
         
-        return captions_list
-
-    except TranscriptsDisabled:
-        return "Transcripts are disabled for this video."
+        
     except VideoUnavailable:
         return "The video is unavailable or has no transcript."
     except NoTranscriptFound:
