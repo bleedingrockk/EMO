@@ -1,1 +1,3 @@
 /libs/bert_model/
+/libs/__pycache__/
+/libs/.ipynb_checkpoints/
