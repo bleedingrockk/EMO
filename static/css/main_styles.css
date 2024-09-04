@@ -2,21 +2,33 @@
 /* # life is awesome */
 body {
     font-family: Arial, sans-serif;
-    background-color: #616161; /* Light green */
+    background-color: #FFFFFF; /* Light green */
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #292929; /* Dark green */
-    color: rgb(26, 83, 25); /* Light green text */
+    position: relative; /* Ensure the pseudo-element overlay positions correctly */
+    background-image: url('/static/images/f11.jpg'); /* Correct path to your background image f11 */
+    background-size: cover; /* Ensure the image covers the entire header */
+    background-position: center; /* Center the image in the header */
+    color: black; /* Text color */
     display: flex;
     height: 150px;
     justify-content: space-between;
     align-items: center;
     padding: 30px;
-    background-size: cover; /* Ensure the image covers the entire header */
-    background-position: center; /* Center the image in the header */
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: -1; /* Place it behind the header content */
 }
 
 header .logo {
@@ -26,7 +38,7 @@ header .logo {
 
 header .logo .logo-text {
     font-weight: bold; /* Make EM bold */
-    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+    background-color: #FFFFFF; /* Semi-transparent background */
     padding: 5px 10px; /* Adjust padding to control the size of the background */
     border-radius: 5px; /* Optional: adds rounded corners */
     display: inline-flex; /* Aligns text and emoji together */
@@ -35,7 +47,7 @@ header .logo .logo-text {
 
 header .logo .emoji-icon {
     font-size: 35px; /* Adjust size as needed */
-    color: rgb(26, 83, 25); /* Medium green for emoji */
+    color: black; /* Medium green for emoji */
     margin-left: 5px; /* Space between text and emoji */
 }
 
@@ -54,6 +66,7 @@ header .links a {
     font-weight: bold; /* Make text bold */
 }
 
+
 .container {
     text-align: center;
     margin: 0 auto;
@@ -68,7 +81,7 @@ header .links a {
     font-size: 80px;
     margin: 0;
     font-weight: bold;
-    color: #FFFFFF; /* Very dark green */
+    color: #181515; /* Very dark green */
 }
 
 .container p {
@@ -88,7 +101,7 @@ header .links a {
 }
 
 .container .form_container i {
-    color: rgb(214, 239, 216); /* Light green */
+    color: #FFFFFF; /* Light green */
     font-size: 30px;
     padding-left: 30px;
     margin-top: 1mm; /* Shifts the icon 2 mm down */
@@ -110,18 +123,18 @@ header .links a {
     background-color: transparent;
     font-size: 16px; /* Font size */
     border-color: transparent;
-    color: rgb(214, 239, 216); /* Light green for input text */
+    color: #FFFFFF; /* Light green for input text */
     margin-right: 10px;
     margin-left: 15px; /* Add space between input and button */
 }
 
 .container .form_container form input::placeholder {
-    color: rgb(214, 239, 216); /* Light green for placeholder text */
+    color: #FFFFFF; /* Light green for placeholder text */
 }
 
 .container .form_container form button {
-    background-color: rgb(214, 239, 216); /* Light green */
-    color: rgb(26, 83, 25); /* Very dark green */
+    background-color: #FFFFFF; /* Light green */
+    color: black; /* Very dark green */
     height: 50px; /* Set height */
     width: 150px;
     border: transparent; /* Border style */
@@ -131,8 +144,8 @@ header .links a {
 }
 
 .container .form_container form button:hover {
-    background-color: rgb(80, 141, 78); /* Dark green */
-    color: rgb(214, 239, 216); /* Light green */
+    background-color:rgb(129, 126, 126); /* Dark green */
+    color:rgba(0, 0, 0, 0.748); /* Light green */
 }
 
 
@@ -189,6 +202,7 @@ header .links a {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
     color: rgb(26, 83, 25); /* Very dark green */
     position: relative; /* Position relative to contain absolutely positioned children */
+    overflow: hidden; /* Hide any overflow content */
 }
 
 .container2 .container2_sub1 h2,
@@ -204,14 +218,15 @@ header .links a {
     color: rgb(38, 46, 38); /* Medium green */
 }
 
-.container2 .background-image {
-    position: absolute;
-    bottom: -32px;
-    left: 0;
-    width: 100%;
-    height: auto;
+.container2 .container2_sub1 img,
+.container2 .container2_sub2 img {
+    display: block; /* Remove extra space below image */
+    margin-top: -20px; /* Space between text and image */
+    max-width: 88%; /* Make image responsive to container width */
+    height: auto; /* Maintain aspect ratio */
     border-radius: 0 0 50px 50px; /* Matching border-radius for bottom corners */
 }
+
 
 .container3 {
     margin: 0 auto;
@@ -223,7 +238,7 @@ header .links a {
 
 .container3 p {
     text-decoration: none;
-    color: rgb(26, 83, 25); /* Very dark green */
+    color: black; /* Very dark green */
     font-weight: bold;
     cursor: pointer;
     position: relative;
@@ -237,7 +252,7 @@ header .links a {
     bottom: -38px; /* Moves the underline 38px below the text */
     width: 100%; /* Matches the width of the text */
     height: 2px; /* Thickness of the underline */
-    background-color: rgb(80, 141, 78); /* Dark green */
+    background-color: black; /* Dark green */
     opacity: 0; /* Initially hidden */
     transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out; /* Transition effect */
 }
@@ -278,7 +293,7 @@ header .links a {
 }
 
 .container4 .container4_sub1 .responsive-img {
-    max-width: 100%; /* Make the image responsive */
+    max-width: 90%; /* Make the image responsive */
     height: auto; /* Maintain aspect ratio */
     display: block; /* Prevent extra space below the image */
 }
@@ -300,7 +315,7 @@ header .links a {
     padding: 100px;
     margin: 0;
     width: 100vw;  /* Full viewport width */
-    height: 100vh; /* Full viewport height */
+    height: 130vh; /* Full viewport height */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
     box-sizing: border-box; /* Ensure padding is included in the width and height */
@@ -342,8 +357,8 @@ header .links a {
 .step_number {
     font-size: 1.8em;
     font-weight: bold;
-    color: rgb(26, 83, 25);
-    background-color: rgb(214, 239, 216);
+    color: white;
+    background-color: black;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -377,17 +392,18 @@ header .links a {
 .block-container {
     text-align: center; /* Horizontal centering */
     padding: 20px;
-    background-color: rgb(214, 239, 216); /* Light green */
+    background-color: black; /* Light green */
 }
 
 .block-container h1 {
     display: inline-block; /* Optional: to prevent the full-width behavior of h2 */
+    color: white;
 }
 
 .heading-container {
     text-align: center;
     padding: 20px;
-    background-color: rgb(214, 239, 216); /* Light green */
+    background-color:black; /* Light green */
     margin-top: 20px;
 }
 
@@ -410,13 +426,13 @@ header .links a {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
     background-size: cover;
     background-position: center;
-    color: rgb(26, 83, 25); /* Very dark green */
+    color: white; /* Very dark green */
 }
 
 .container6 {
     padding: 50px 20px;
-    background-color: rgba(128, 175, 129, 0.812);
-    background: url('../images/container_6_bg.jpg') no-repeat center center;
+    background-color: black;
+    background: url('/static/images/f29.avif') no-repeat center center;
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -444,7 +460,7 @@ header .links a {
     text-align: center;
     margin-top: 0;
     margin-bottom: 20px;
-    color: rgb(214, 239, 216);
+    color: white;
 }
 
 .accordion-item {
@@ -459,7 +475,7 @@ header .links a {
     margin: 0;
     padding: 10px 20px;
     cursor: pointer;
-    background-color: #508d4ea1;
+    background-color: rgba(0, 0, 0, 0.77);
     color: #fff;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -483,7 +499,7 @@ header .links a {
 }
 
 .accordion-button:hover {
-    background-color: #406d3c;
+    background-color: #646864;
 }
 
 .accordion-content {
