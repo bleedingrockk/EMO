@@ -304,4 +304,3 @@ def cleaned_strings_list(text_list):
         cleaned_list.append(cleaned_text)
     return cleaned_list
 
-

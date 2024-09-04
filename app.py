@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, session
 from libs.Youtube_functions import *
 from libs.classifier_model import *
 from libs.n_gram import *
+from libs.visuals import * 
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Change this to a random, secure value
@@ -34,6 +35,8 @@ def result():
     categorised_dict = {}
     top_10_bigrams = ()
     top_5_trigrams = ()
+    plot_data = None
+    pie_chart_base64 = None
 
     search_results = session.get('search_results', [])  # Retrieve search results from session
 
@@ -66,6 +69,13 @@ def result():
                 top_10_bigrams = get_top_ngrams(text_list, 2, 10)
                 top_5_trigrams = get_top_ngrams(text_list, 3, 5)
 
+                # Generate word cloud
+                plot_data = generate_wordcloud_from_cleaned_text(cleaned_list)
+
+                # Pi Chart   
+                # Generate the pie chart as a base64 string
+                pie_chart_base64 = create_pie_chart_base64(categorised_dict)
+
         except ValueError:
             pass  # Handle invalid index here if necessary
 
@@ -79,7 +89,9 @@ def result():
                             cleaned_list=cleaned_list, 
                             categorised_dict = categorised_dict,
                             top_10_bigrams = top_10_bigrams,
-                            top_5_trigrams = top_5_trigrams)
+                            top_5_trigrams = top_5_trigrams,
+                            plot_data = plot_data,
+                            pie_chart_base64 = pie_chart_base64)
 
 if __name__ == '__main__':
     app.run(debug=True)
