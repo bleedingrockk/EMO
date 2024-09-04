@@ -4,101 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/css/result_style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <title>YouTube Search</title>
+    
 </head>
 <body>
-    
-    <h1>YouTube Search Results</h1>
+    <header>
+        <div class="logo" id="home">
+            <span class="logo-text">
+                EM<i class="fas fa-smile emoji-icon"></i>
+            </span>
+        </div>
+        
+        <div class="links">
+            <a href="">SENTIMENT ANALYSIS</a> 
+            <a href="/"> | Home</a>
+        </div>
+    </header>
 
+    
+    <h1>Video Analysis</h1>
     <div class="container video-details">
         {% if video_details %}
             <h2>Video Details</h2>
             <p><strong>Title:</strong> {{ video_details.title }}</p>
             <p><strong>Description:</strong> {{ video_details.description }}</p>
-            <p><strong>Views:</strong> {{ video_details.view_count }}</p>
-            <p><strong>Likes:</strong> {{ video_details.like_count }}</p>
-            <p><strong>Comments:</strong> {{ video_details.comment_count }}</p>
-            <p><strong>Duration:</strong> {{ video_details.duration }}</p>
         {% endif %}
     </div>
-
-    <div class="container captions">
-        {% if captions %}
-            <h2>Captions</h2>
-            <p>
-                {% for caption in captions %}
-                    {{ caption.text }}{% if not loop.last %}, {% endif %}
-                {% endfor %}
-            </p>
-        {% endif %}
+    
+    <!-- New container to hold the three sections in a row -->
+    <div class="container horizontal-container">
+        <!-- Video Statistics -->
+        <div class="video-statistics">
+            {% if video_details %}
+                <h3>Video Statistics</h3>
+                <ul>
+                    <li><strong>Views:</strong> {{ video_details.view_count }}</li>
+                    <li><strong>Likes:</strong> {{ video_details.like_count }}</li>
+                    <li><strong>Comments:</strong> {{ video_details.comment_count }}</li>
+                    <li><strong>Duration:</strong> {{ video_details.duration }}</li>
+                </ul>
+            {% endif %}
+        </div>
+    
+        <!-- Top Commenters -->
+        <div class="top-commenters">
+            {% if top_commenters %}
+                <h3>Top 10 Commenters</h3>
+                <ul>
+                    {% for commenter, count in top_commenters %}
+                        <li><strong>{{ commenter }}:</strong> {{ count }} comments</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    
+        <!-- Top Emojis -->
+        <div class="top-emojis">
+            {% if top_10_emojis %}
+                <h3>Top 10 Emojis</h3>
+                <ul>
+                    {% for emoji, count in top_10_emojis %}
+                        <li>{{ emoji }} ({{ count }} times)</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
     </div>
+    
+    <!-- Sentiment Categories as Dropdown Menus -->
+    <div class="container">
+        <h2>Sentiments</h2>
 
-    <div class="container comments">
-        {% if comments %}
-        <h2>Comments</h2>
-        <ul>
-            {% for comment in comments %}
-                <li>
-                    <strong>{{ comment.authorDisplayName }}:</strong> {{ comment.textDisplay }}
-                    {% if comment.replies %}
-                        <ul>
-                            {% for reply in comment.replies %}
-                                <li>
-                                    <strong>{{ reply.authorDisplayName }}:</strong> {{ reply.textDisplay }}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+        {% for category, comments in categorised_dict.items() %}
+        <div class="dropdown">
+            <button class="dropdown-btn">{{ category }}</button>
+            <div class="dropdown-content" id="{{ category }}" style="display: none;">
+                <ul>
+                    {% for comment in comments %}
+                        <li>{{ comment }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-
-    <div class="container top-commenters">
-        {% if top_commenters %}
-            <h2>Top Commenters</h2>
+    
+    
+    
+    
+    <div class="container horizontal-container">
+        <!-- Top 10 Bigrams -->
+        <div class="bigrams">
+            <h3>Top 10 Bigrams</h3>
             <ul>
-                {% for commenter, count in top_commenters %}
-                    <li><strong>{{ commenter }}:</strong> {{ count }} comments</li>
+                {% for bigram, count in top_10_bigrams %}
+                    <li>{{ bigram }}: {{ count }}</li>
                 {% endfor %}
             </ul>
-        {% endif %}
-    </div>
+        </div>
 
-    <div class="container top-emojis">
-        {% if top_10_emojis %}
-        <h2>Top 10 Emojis</h2>
-        <ul>
-            {% for emoji, count in top_10_emojis %}
-                <li>{{ emoji }} ({{ count }} times)</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </div>
-
-    <div class="text_cat_container">
-        {% for category, texts in categorised_dict.items() %}
-            {% if texts %}  <!-- Check if there are texts for this category -->
-                <div class="Text_category1">
-                    <h2>{{ category }}</h2>
-                    <ul>
-                        {% for text in texts %}
-                            <li>{{ text }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="bigramsContainer">
-        <h1>Top 10 Bigrams</h1>
-    <ul>
-        {% for bigram, count in top_10_bigrams %}
-            <li>{{ bigram }}: {{ count }}</li>
-        {% endfor %}
-    </ul>
-
+        <!-- Top 5 Trigrams -->
+        <div class="trigrams">
+            <h3>Top 5 Trigrams</h3>
+            <ul>
+                {% for trigram, count in top_5_trigrams %}
+                    <li>{{ trigram }}: {{ count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <script>
+            // Get all dropdown buttons
+            var dropdownButtons = document.querySelectorAll('.dropdown-btn');
+    
+            dropdownButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    // Toggle the visibility of the associated comments section
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "none" || content.style.display === "") {
+                        content.style.display = "block";
+                    } else {
+                        content.style.display = "none";
+                    }
+                });
+            });
+        </script>
     <h1>Top 5 Trigrams</h1>
     <ul>
         {% for trigram, count in top_5_trigrams %}
