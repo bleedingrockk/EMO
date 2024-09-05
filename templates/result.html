@@ -114,6 +114,7 @@
                 {% endfor %}
             </ul>
         </div>
+
         <script>
             // Get all dropdown buttons
             var dropdownButtons = document.querySelectorAll('.dropdown-btn');
@@ -130,12 +131,7 @@
                 });
             });
         </script>
-    <h1>Top 5 Trigrams</h1>
-    <ul>
-        {% for trigram, count in top_5_trigrams %}
-            <li>{{ trigram }}: {{ count }}</li>
-        {% endfor %}
-    </ul>
+        
     </div>
 
     <div>

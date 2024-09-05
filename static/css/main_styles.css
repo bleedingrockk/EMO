@@ -4,7 +4,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #FFFFFF; /* Light green */
     margin: 0;
-    padding: 0;
+    padding: 0px;
 }
 
 header {
@@ -158,6 +158,8 @@ header .links a {
     background-color: transparent; 
     display: flex;
     justify-content: space-around;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .container1_sub1{
@@ -521,12 +523,18 @@ header .links a {
     transform: rotate(180deg);
 }
 
-
+/* --------------------------- Container 7 ---------------------------------- */
 .container7 {
     padding: 50px 20px;
-    background-color: white;
+    color: #ddd;
+    background-image: url('/static/images/f11.jpg');
+    background-size: cover; /* Ensure the image covers the entire header */
+    background-position: center;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    
 }
 
 .contact-section .row {
