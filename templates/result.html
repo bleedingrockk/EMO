@@ -134,17 +134,16 @@
         
     </div>
 
-    <div>
+    <div class="container word-container">
+        <h2>Word Cloud</h2>
         <!-- Display Word Cloud -->
         {% if plot_data %}
-        <h3>Word Cloud</h3>
-        <img src="data:image/png;base64,{{ plot_data }}" alt="Word Cloud">
+            <img src="data:image/png;base64,{{ plot_data }}" alt="Word Cloud">
         {% endif %}
     </div>
-
-    <div>
-        <h1>Pie Chart of Category Counts</h1>
-
+    
+    <div class="container pie-container">
+        <h2>Pie Chart of Category Counts</h2>
         <!-- Display Pie Chart -->
         {% if pie_chart_base64 %}
             <img src="data:image/png;base64,{{ pie_chart_base64 }}" alt="Pie Chart">
@@ -152,7 +151,8 @@
             <p>No data available to display the pie chart.</p>
         {% endif %}
     </div>
-
+    
+    
 
 </body>
 </html>

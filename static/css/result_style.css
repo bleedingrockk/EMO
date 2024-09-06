@@ -251,8 +251,37 @@ ul li {
 .dropdown-content li {
     padding: 5px 0;
 }
+.h3{
+    text-align: center;
+}
+.container-vertical {
+    display: block;
+    margin-top: 20px;
+}
 
+.word-container {
+    max-width: 1200px; /* Increase width */
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
 
+.pie-container {
+    max-width: 1200px; /* Increase width */
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
 
-
-
+.chart-container img {
+    max-width: 150%; /* Ensure the image scales down if too large */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+}

@@ -23,7 +23,7 @@ def generate_wordcloud_from_cleaned_text(cleaned_text_list):
     text = " ".join(cleaned_text_list)
     
     # Create a WordCloud object with custom settings
-    wordcloud = WordCloud(width=800,
+    wordcloud = WordCloud(width=1200,
                         height=400,
                         background_color='black',
                         colormap='plasma',  # Color map
