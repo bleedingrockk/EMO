@@ -15,7 +15,7 @@ api_key = 'AIzaSyA_GneRzf-BNyXTf-rogarI-fuVJsvG-YE'
 from googleapiclient.discovery import build
 import isodate
 
-def youtube_search(api_key, query, max_results=5, initial_results=30):
+def youtube_search(api_key, query, max_results=4, initial_results=30):
     # Build the YouTube service
     print("Building YouTube service...")
     youtube = build('youtube', 'v3', developerKey=api_key)

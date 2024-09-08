@@ -1,31 +1,41 @@
+// search bar should appear only after button is clicked
+const form = document.querySelector('form');
+const container = document.querySelector('.container1_box');
+
+form.addEventListener('submit', (event) => {
+    if (event.target.checkValidity()) {
+    container.style.display = 'block';
+    }
+});
+
+// end
+
 document.getElementById('container3_heading_1').addEventListener('click', function() {
-    var target1 = document.getElementById('container4_sub1_1');
+    var target1 = document.getElementById('container3_1');
     target1.style.display = 'block'; 
-    var target2 = document.getElementById('container4_sub1_2');
+    var target2 = document.getElementById('container3_2');
     target2.style.display = 'none'; 
-    var target3 = document.getElementById('container4_sub1_3');
+    var target3 = document.getElementById('container3_3');
     target3.style.display = 'none'; 
 });
 
 document.getElementById('container3_heading_2').addEventListener('click', function() {
-    var target1 = document.getElementById('container4_sub1_1');
+    var target1 = document.getElementById('container3_1');
     target1.style.display = 'none'; 
-    var target2 = document.getElementById('container4_sub1_2');
+    var target2 = document.getElementById('container3_2');
     target2.style.display = 'block'; 
-    var target3 = document.getElementById('container4_sub1_3');
+    var target3 = document.getElementById('container3_3');
     target3.style.display = 'none'; 
 });
 
 document.getElementById('container3_heading_3').addEventListener('click', function() {
-    var target1 = document.getElementById('container4_sub1_1');
+    var target1 = document.getElementById('container3_1');
     target1.style.display = 'none'; 
-    var target2 = document.getElementById('container4_sub1_2');
+    var target2 = document.getElementById('container3_2');
     target2.style.display = 'none'; 
-    var target3 = document.getElementById('container4_sub1_3');
+    var target3 = document.getElementById('container3_3');
     target3.style.display = 'block'; 
 });
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
     const accordionButtons = document.querySelectorAll('.accordion-button');

@@ -42,80 +42,198 @@
     </div>
 
 <!-- -------------------------- search output ---------------------------------------------------- -->
-<h2 id="search_result">Search Results:</h2>
-
-<div class="container1">
     {% if results %}
-            {% for video in results %}
-            <div class="container1_sub1">
+        <div class="container1_box">
+            <h2 id="search_result">Search Results</h2>
+            <div class="container1">
+                {% if results %}
+                        {% for video in results %}
+                        <div class="container1_sub1">
 
-                    <a href="{{ url_for('result', select=loop.index0, results=results) }}">
-                        <img src="{{ video[2] }}" alt="Thumbnail">
-                    </a>
+                                <a href="{{ url_for('result', select=loop.index0, results=results) }}">
+                                    <img src="{{ video[2] }}" alt="Thumbnail">
+                                </a>
 
-                    <a href="{{ url_for('result', select=loop.index0, results=results) }}">
-                        {{ video[1] }} <!-- Display the video title -->
-                    </a>
+                                <a href="{{ url_for('result', select=loop.index0, results=results) }}">
+                                    {{ video[1] }} <!-- Display the video title -->
+                                </a>
+                        </div>
+
+                        {% endfor %}
+                {% endif %}
             </div>
-
-            {% endfor %}
+        </div>
     {% endif %}
-</div>
     <!-- ------------------------------ Container 2----------------------------------------- -->
-    <!-- Second with details -->
-    <div class="container2">
-        <div class="container2_sub1">
-            <h2>Sentiment Analysis</h2>
-            <p>Analyze the sentiment of YouTube videos by pasting their links. Get insights into the overall mood and emotions expressed in the video.</p>
-            <img src="static\images\f33.jpg" alt="Sentiment Analysis Image" class="container2-image">
-        </div>
-        <div class="container2_sub2">
-            <h2>Features</h2>
-            <p>Our sentiment analysis tool provides a quick and easy way to understand the emotions in YouTube videos. Get detailed insights and improve your content strategy.</p>
-            <img src="static\images\f37.jpg" alt="Features Image" class="container2-image">
-        </div>
-    </div>
-    
-    
-    
-    <!-- suggested videos -->
+<!-- suggested videos -->   
     <div class="block-container">
-        <h1 id="browse-content">Browse Content</h1>
+        <h1 id="browse-content">Browse content</h1>
+    </div>    
+    <div class="container2">
+
+        <div class="container2_sub1">
+            <a href="https://www.youtube.com/watch?v=XXYlFuWEuKI">
+                <img src="static\images\demo_img1.jpg" alt="The Weeknd - Save Your Tears (Official Music Video)">
+            </a>
+            <a href="https://www.youtube.com/watch?v=XXYlFuWEuKI">
+                The Weeknd - Save Your Tears (Official Music Video)
+            </a>
+        </div>
+
+        <div class="container2_sub1">
+            <a href="https://www.youtube.com/watch?v=Kl5B6MBAntI">
+                <img src="static\images\demo_img2.jpg" alt=" ED SHEERAN - Shape Of You | Kyle Hanagami Choreography">
+            </a>
+            <a href="https://www.youtube.com/watch?v=Kl5B6MBAntI">
+                ED SHEERAN - Shape Of You | Kyle Hanagami Choreography
+            </a>
+        </div>
+
+        <div class="container2_sub1">
+            <a href="https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">
+                <img src="static\images\demo_img3.jpg" alt="But what is a neural network? | Chapter 1, Deep learning">
+            </a>
+            <a href="https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">
+                But what is a neural network? | Chapter 1, Deep learning
+            </a>
+        </div>
+
     </div>
-        <!-- ------------------------------ Container 3 ----------------------------------------- -->
-    <div class="container3">
+    <!-- suggested videos -->   
+    <div class="block-container">
+        <h1 id="browse-content">Features</h1>
+    </div>    
+    <!-- ------------------------------ Container 4----------------------------------------- -->
+        <div class="container4">
+        <div class="container4_sub1">
+            <img src="static\images\f41.jpg" alt="Music" class="responsive-img">
+            Understand emotional reactions in YouTube comments with our BERT model. Classify user sentiments like joy, anger, or surprise for detailed insights.
+            
+        </div>
         
-        <p id="container3_heading_1">Entertainment</p> 
-        <p id="container3_heading_2">Finance</p> 
-        <p id="container3_heading_3">Education</p> 
+        <div class="container4_sub1 ">
+            <img src="static\images\f35.jpg" alt="Education" class="responsive-img">
+            Identify common phrases and word patterns with N-Gram analysis. Gain insights into key discussion topics among YouTube viewers.
+        </div>
+        
+        <div class="container4_sub1 ">
+            <img src="static\images\f38.jpg" alt="News" class="responsive-img">
+            Predict and analyze comment sequences with our Markov model. Discover trends in how users engage with video content over time.
+        </div>
+    </div>
+    
+<!-- ------------------------------ Container 3 ----------------------------------------- -->
+    <div class="container3">
+    
+        <p id="container3_heading_1">BERT Sentiment Analysis</p> 
+        <p id="container3_heading_2">N-Gram Analysis</p> 
+        <p id="container3_heading_3">Markov Chain Comment</p> 
     </div>
     <!-- Straight line -->
     <hr class="styled-line">
-    
-    <!-- ------------------------------ Container 4----------------------------------------- -->
-    <div class="container4">
-        <div class="container4_sub1" id="container4_sub1_1">
-            <h2>Entertainment</h2>
-            Discover the latest in entertainment, from trending music and movies to the most talked-about TV series. Stay updated with the hottest releases and must-see content.
-            <img src="static\images\f41.jpg" alt="Music" class="responsive-img">
-        </div>
-        
-        <div class="container4_sub1 hidden" id="container4_sub1_2">
-            <h2>Finance</h2>
-            Explore the latest news and trends in the financial world. Get insights into market movements, investment opportunities, and economic developments that shape the global economy.
-            <img src="static\images\f35.jpg" alt="Education" class="responsive-img">
-        </div>
-        
-        <div class="container4_sub1 hidden" id="container4_sub1_3">
-            <h2>Education</h2>
-            Stay informed about advancements in education, innovative teaching methods, and resources for students and educators. Discover articles on online learning, academic research, and educational policies.
-            <img src="static\images\f38.jpg" alt="News" class="responsive-img">
+    <div class="container3_1 hidden" id="container3_1">
+        <div class="container3_1_bert hidden" id="container3_1">
+            <div class="container3_1_1">
+                <p>Uplifting Emotions</p>
+                <div class="container3_1_sub hidden">
+                    <div class="container3_1_2"><p>Admiration</p></div>
+                    <div class="container3_1_2"><p>Amusement</p></div>
+                    <div class="container3_1_2"><p>Joy</p></div>
+                </div>
+            </div>
+            <div class="container3_1_1">
+                <p>Distressing Emotions</p>
+                <div class="container3_1_sub hidden">
+                    <div class="container3_1_2"><p>Anger</p></div>
+                    <div class="container3_1_2"><p>Disgust</p></div>
+                    <div class="container3_1_2"><p>Sadness</p></div>
+                </div>
+            </div>
+            <div class="container3_1_1">
+                <p>Social Emotions</p>
+                <div class="container3_1_sub hidden">
+                    <div class="container3_1_2"><p>Approval</p></div>
+                    <div class="container3_1_2"><p>Disapproval</p></div>
+                    <div class="container3_1_2"><p>Embarrassment</p></div>
+                </div>
+            </div>
+
+            <div class="container3_1_1">
+                <p>Caring/Compassionate Emotions</p>
+                <div class="container3_1_sub hidden">
+                    <div class="container3_1_2"><p>Caring</p></div>
+                    <div class="container3_1_2"><p>Gratitude</p></div>
+                    <div class="container3_1_2"><p>Love</p></div>
+                </div>
+            </div>
+
+            <div class="container3_1_1">
+                <p>Curiosity/Exploration</p>
+                <div class="container3_1_sub hidden">
+                    <div class="container3_1_2"><p>Curiosity</p></div>
+                    <div class="container3_1_2"><p>Excitement</p></div>
+                    <div class="container3_1_2"><p>Realization</p></div>
+                </div>
+            </div>
+
+            <div class="container3_1_1">
+                <p>Fear/Anxiety Emotions</p>
+                <div class="container3_1_sub hidden">
+                    <div class="container3_1_2"><p>Fear</p></div>
+                    <div class="container3_1_2"><p>Nervousness</p></div>
+                    <div class="container3_1_2"><p>Remorse</p></div>
+                </div>
+            </div>
+
+            <div class="container3_1_1">
+                <p>Disappointment/Letdown Emotions</p>
+                <div class="container3_1_sub hidden">
+                    <div class="container3_1_2"><p>Disappointment</p></div>
+                    <div class="container3_1_2"><p>Annoyance</p></div>
+                    <div class="container3_1_2"><p>Grief</p></div>
+                </div>
+            </div>
+
+            <div class="container3_1_1">
+                <p>Surprise/Reactions</p>
+                <div class="container3_1_sub hidden">
+                    <div class="container3_1_2"><p>Surprise</p></div>
+                    <div class="container3_1_2"><p>Optimism</p></div>
+                    <div class="container3_1_2"><p>Relief</p></div>
+                </div>
+            </div>
+
+            <div class="container3_1_1">
+                <p>Neutral/Objective</p>
+                <div class="container3_1_sub hidden">
+                    <div class="container3_1_2"><p>Confusion</p></div>
+                    <div class="container3_1_2"><p>Desire</p></div>
+                    <div class="container3_1_2"><p>Neutral</p></div>
+                </div>
+            </div>
+
         </div>
     </div>
-    
-    <!-- ------------------------------ Container 4.1 ----------------------------------------- -->
-
-
+    <div class="container3_1 hidden" id="container3_2">
+        <div class="container3_1_ngram">
+            <div class="container3_1_1">
+                <p>Bi Gram</p>
+            </div>
+            <div class="container3_1_1">
+                <p>Tri Gram</p>
+            </div>
+        </div>
+    </div>
+    <div class="container3_1 hidden" id="container3_3">
+        <div class="container3_1_ngram">
+            <div class="container3_1_1">
+                <p>Predicting Next word</p>
+            </div>
+            <div class="container3_1_1">
+                <p>Conversation Pattern</p>
+            </div>
+        </div>
+    </div>
 
 
     <!-- ------------------------------ Container 5 ----------------------------------------- -->
