@@ -141,6 +141,19 @@ ul li {
     margin-left: 20px;
 }
 
+.top_emojis_sub{
+    display: flex;
+}
+
+.top_emojis_sub ul {
+    padding: 0; /* Remove default padding of ul */
+    list-style-type: none; /* Remove default bullets */
+}
+
+.top_emojis_sub li {
+    margin-bottom: 1px; /* Adjust the vertical distance between list items */
+}
+
 .comments li {
     background: #c9cac9ea;
 }

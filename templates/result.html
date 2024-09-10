@@ -59,17 +59,27 @@
                 </ul>
             {% endif %}
         </div>
+        
     
         <!-- Top Emojis -->
-        <div class="top-emojis">
+        <div class="top_emojis">
             {% if top_10_emojis %}
                 <h3>Top 10 Emojis</h3>
-                <ul>
-                    {% for emoji, count in top_10_emojis %}
-                        <li>{{ emoji }} ({{ count }} times)</li>
-                    {% endfor %}
-                </ul>
+                <div class="top_emojis_sub">
+                    <div>
+                        <ul>
+                            {% for emoji, count in top_10_emojis %}
+                                <li>{{ emoji }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="data:image/png;base64,{{ chart_data }}" alt="Top 10 Emojis Chart">
+                    </div>
+                </div>
+                
             {% endif %}
+            
         </div>
     </div>
     

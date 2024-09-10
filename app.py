@@ -37,6 +37,7 @@ def result():
     top_5_trigrams = ()
     plot_data = None
     pie_chart_base64 = None
+    chart_data = None
 
     search_results = session.get('search_results', [])  # Retrieve search results from session
 
@@ -57,7 +58,10 @@ def result():
                 
                 # Get the top 10 most common emojis
                 top_10_emojis = extract_and_rank_top_emojis(text_list)
-
+                
+                # Plotting the Chart
+                # Generate Base64-encoded image data
+                chart_data = plot_top_10_emojis(top_10_emojis)
 
                 #cleaned text
                 cleaned_list = cleaned_strings_list(text_list)
@@ -91,7 +95,8 @@ def result():
                             top_10_bigrams = top_10_bigrams,
                             top_5_trigrams = top_5_trigrams,
                             plot_data = plot_data,
-                            pie_chart_base64 = pie_chart_base64)
+                            pie_chart_base64 = pie_chart_base64,
+                            chart_data = chart_data)
 
 if __name__ == '__main__':
     app.run(debug=True)

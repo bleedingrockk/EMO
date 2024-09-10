@@ -86,12 +86,12 @@ def create_pie_chart_base64(my_dict):
     plt.gca().set_facecolor('black')  # Set plot area background color
     
     wedges, texts, autotexts = plt.pie(sizes,
-                                       labels=labels,
-                                       autopct='%1.1f%%',
-                                       startangle=140,
-                                       colors=colors,
-                                       shadow=shadow,
-                                       explode=explode)  # Apply explosion to all slices
+                                        labels=labels,
+                                        autopct='%1.1f%%',
+                                        startangle=140,
+                                        colors=colors,
+                                        shadow=shadow,
+                                        explode=explode)  # Apply explosion to all slices
 
     # Improve readability of the labels and percentages with white color
     for text in texts:
@@ -116,3 +116,52 @@ def create_pie_chart_base64(my_dict):
     pie_chart_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
     
     return pie_chart_base64
+
+
+# ------------------------------------------ EMOJI CHART- --------------------------------------------
+def plot_top_10_emojis(top_10_emojis):
+    """
+    Create a horizontal bar chart for the top 10 most common emojis
+    and return it as a base64-encoded string.
+    
+    Args:
+        top_10_emojis: A list of tuples containing the top 10 most common emojis and their counts.
+        
+    Returns:
+        str: The base64-encoded string of the bar chart image.
+    """
+    emojis, counts = zip(*top_10_emojis)
+
+    # Create a BytesIO object to save the chart image
+    buf = io.BytesIO()
+    
+    # Create the bar chart
+    plt.figure(figsize=(3,4.28))
+    
+    # Define the gap between bars
+    bar_height = 0.8 # Adjust the height of the bars to increase the gap
+    plt.barh(emojis, counts, color='black', height=bar_height, )
+    
+    # Remove background color and extra space
+    plt.gca().patch.set_visible(False)  # Remove the background
+    plt.gca().spines['top'].set_visible(False)
+    plt.gca().spines['right'].set_visible(False)
+    plt.gca().spines['left'].set_visible(False)
+    plt.gca().spines['bottom'].set_visible(False)
+    
+    plt.gca().yaxis.set_visible(False)  # Hide y-axis labels
+    plt.gca().xaxis.set_visible(False)  # Ensure x-axis is visible
+    
+    # Remove any extra space from the left of the y-axis
+    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+        
+    plt.gca().invert_yaxis()  # Invert y-axis to have the highest counts at the top
+    plt.tight_layout()  # Adjust layout to make room for labels
+    plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0, transparent=True)
+    plt.close()
+
+    # Encode the image to base64
+    buf.seek(0)
+    plot_data = base64.b64encode(buf.getvalue()).decode('utf-8')
+    
+    return plot_data

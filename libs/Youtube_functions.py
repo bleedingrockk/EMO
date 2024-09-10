@@ -123,7 +123,7 @@ def get_captions(video_id):
 
 
 # This function will return comments with replies from youtube using video ID
-def get_comments_with_replies(video_id, api_key, max_results=1000):
+def get_comments_with_replies(video_id, api_key, max_results=100):
     """
     This function retrieves comments for a YouTube video, including replies,
     up to a maximum of 10000 comments.
