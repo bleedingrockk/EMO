@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/css/result_style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <title>YouTube Search</title>
     
 </head>
 <body>
+
     <header>
         <div class="logo" id="home">
             <span class="logo-text">
@@ -28,10 +30,32 @@
     <div class="container video-details">
         {% if video_details %}
             <h2>Video Details</h2>
-            <p><strong>Title:</strong> {{ video_details.title }}</p>
-            <p><strong>Description:</strong> {{ video_details.description }}</p>
+            <div style="display: flex; justify-content: space-around;">
+                <p style="width: 40%;"><strong>Title:</strong> {{ video_details.title }}</p>
+                <img style="width: 40%;" src="{{ thumbnail_url }}" alt="Video thumbnail">
+            </div>
+
         {% endif %}
     </div>
+    
+    <!-- ----------------------------------------- Description------------------------------------------- -->
+
+    <button id="openWindowButton" class="desc_button">
+        <!-- {% if video_details %} -->
+            <p>Description</p>
+        <!-- {% endif %} -->
+    </button>
+
+    <!-- The Floating Window -->
+    <div id="floatingWindow" class="floating-window">
+        <div class="window-content">
+            <span class="close-button" id="closeWindowButton">&times;</span>
+            <h2>Description</h2>
+            <p>{{ video_details.description }}</p>
+        </div>
+    </div>
+
+    <!-- ----------------------------------------- Description------------------------------------------- -->
     
     <!-- New container to hold the three sections in a row -->
     <div class="container horizontal-container">
@@ -40,11 +64,10 @@
             {% if video_details %}
                 <h3>Video Statistics</h3>
                 <ul>
-                    <li><strong>Views:</strong> {{ video_details.view_count }}</li>
-                    <li><strong>Likes:</strong> {{ video_details.like_count }}</li>
-                    <li><strong>Comments:</strong> {{ video_details.comment_count }}</li>
-                    <li><strong>Duration:</strong> {{ video_details.duration }}</li>
-                </ul>
+                    <li><strong><i class="fa-solid fa-eye" style="color: #181818;"></i>  Views:</strong>  {{ video_details.view_count }}</li>
+                    <li><strong><i class="fa-solid fa-thumbs-up" style="color: #181818;"></i>   Likes:</strong> {{ video_details.like_count }}</li>
+                    <li><strong><i class="fa-solid fa-comment" style="color: #181818;"></i> Comments:</strong> {{ video_details.comment_count }}</li>
+                    <li><strong><i class="fa-solid fa-clock" style="color: #181818;"></i> Duration:</strong> {{ video_details.duration }}</li> </ul>
             {% endif %}
         </div>
     
@@ -100,6 +123,15 @@
         </div>
         {% endfor %}
     </div>
+    <div class="container pie-container">
+        <h2>Pie Chart of Category Counts</h2>
+        <!-- Display Pie Chart -->
+        {% if pie_chart_base64 %}
+            <img src="data:image/png;base64,{{ pie_chart_base64 }}" alt="Pie Chart">
+        {% else %}
+            <p>No data available to display the pie chart.</p>
+        {% endif %}
+    </div>
     
     
     
@@ -151,18 +183,7 @@
             <img src="data:image/png;base64,{{ plot_data }}" alt="Word Cloud">
         {% endif %}
     </div>
-    
-    <div class="container pie-container">
-        <h2>Pie Chart of Category Counts</h2>
-        <!-- Display Pie Chart -->
-        {% if pie_chart_base64 %}
-            <img src="data:image/png;base64,{{ pie_chart_base64 }}" alt="Pie Chart">
-        {% else %}
-            <p>No data available to display the pie chart.</p>
-        {% endif %}
-    </div>
-    
-    
-
+    <script src="/static/js/result_scripts.js"></script>
 </body>
+
 </html>

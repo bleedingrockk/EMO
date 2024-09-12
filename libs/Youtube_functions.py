@@ -24,6 +24,7 @@ def youtube_search(api_key, query, max_results=4, initial_results=30):
     search_response = youtube.search().list(
         q=query,
         part='id,snippet',
+        type='video',
         maxResults=initial_results
     ).execute()
 
@@ -75,9 +76,17 @@ def youtube_search(api_key, query, max_results=4, initial_results=30):
     # Final results
     return results
 
+def get_thumbnail_url(video_id, api_key):
+    youtube = build('youtube', 'v3', developerKey=api_key)
 
+    request = youtube.videos().list(
+        part="id,snippet",
+        id=video_id
+    )
+    response = request.execute()
 
-
+    thumbnail_url = response['items'][0]['snippet']['thumbnails']['maxres']['url']
+    return thumbnail_url
 
 # This function will use video ID to get details about the video from youtube
 def get_video_details(video_id, api_key):

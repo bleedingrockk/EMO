@@ -1,9 +1,16 @@
+:root {
+    --background-color: rgb(24, 24, 24);
+    --text-color: rgb(254, 252, 241);
+    --primary-color: rgb(99, 99, 99);
+    --primary-hover-color: red;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--background-color); /* Light green */
     margin: 0;
     padding: 20px;
-    color: #333;
+    color: var(--text-color)
 }
 
 header {
@@ -42,7 +49,7 @@ header::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    background-color: var(--background-color); /* Dark overlay */
     z-index: -1; /* Behind the header content */
 }
 
@@ -51,10 +58,14 @@ header .logo {
     margin-left: 100px;
     padding: 10px; /* Control space around the logo */
 }
+header .logo:hover{
+    animation: animateLink 0.5s ease-in-out;
+    color: var(--primary-hover-color)
+}
 
 header .logo .logo-text {
     font-weight: bold; /* Bold text */
-    background-color: #FFFFFF; /* White background */
+    background-color: var(--text-color); /* White background */
     padding: 5px 10px; /* Control size of the background */
     border-radius: 5px; /* Rounded corners */
     display: inline-flex; /* Align text and emoji together */
@@ -67,9 +78,15 @@ header .logo .emoji-icon {
     margin-left: 5px; /* Space between text and emoji */
 }
 
+header .logo .emoji-icon:hover{
+    animation: animateLink 0.5s ease-in-out;
+    color: #e71d36;
+}
+
+
 header .links {
     font-size: 20px;
-    color: #FFFFFF; /* White text */
+    color: #fffdf5; /* White text */
     width: 70%;
     margin-right: 10px;
     display: flex;
@@ -79,21 +96,91 @@ header .links {
 
 header .links a {
     text-decoration: none;
-    color: #FFFFFF; /* White text */
+    color: #fffdf5; /* White text */
     font-weight: bold; /* Bold links */
 }
 
+header .links a:hover {
+    animation: animateLink 0.5s ease-in-out;
+    color: #e71d36;
+}
+
+
 h1 {
     text-align: center;
-    color: #444;
+    color: #fffdf5;
     font-size: 2.5em;
     margin-bottom: 20px;
 }
+/* ------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------button---------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------------- */
+.desc_button{
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 15px;
+    padding-bottom: 8px;
+    border-radius: 10px;
+    margin-left: 1236px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.6s ease-in-out, color 0.6s ease-in-out;
+}
 
+.desc_button:hover{
+    background-color: var(--primary-hover-color);
+    color: var(--background-color);
+}
+
+/* The floating window container */
+.floating-window {
+    display: none; /* Initially hidden */
+    position: fixed;
+    overflow-y: auto; /* Add this to enable vertical scrolling */
+    max-height: 80vh; /* Set a maximum height to prevent the window from growing too large */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Center the window */
+    width: 60%;
+    background-color: #fff;
+    color: var(--background-color);
+    border-radius: 10px;
+    z-index: 1000; /* Ensures it's on top */
+}
+
+.floating-window h2{
+    color: var(--background-color);
+}
+
+/* The content inside the floating window */
+.window-content {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Close button in the floating window */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-button:hover {
+    color: #f00;
+}
+/* ------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------button end ---------------------------------------------------- */
+/** ------------------------------------------------------------------------------------------------------------------- */
 .container {
     max-width: 1200px; /* Increase width */
     margin: 0 auto;
-    background: white;
+    background: #555555;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -102,10 +189,11 @@ h1 {
 
 .video-details {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 h2 {
-    color: #666;
+    color: #fffdf5;
     border-bottom: 2px solid #ddd;
     padding-bottom: 10px;
     margin-bottom: 15px;

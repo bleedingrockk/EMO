@@ -24,7 +24,7 @@ def generate_wordcloud_from_cleaned_text(cleaned_text_list):
     
     # Create a WordCloud object with custom settings
     wordcloud = WordCloud(width=1200,
-                        height=400,
+                        height=600,
                         background_color='black',
                         colormap='plasma',  # Color map
                         contour_color='white',  # Outline color
@@ -140,7 +140,7 @@ def plot_top_10_emojis(top_10_emojis):
     
     # Define the gap between bars
     bar_height = 0.8 # Adjust the height of the bars to increase the gap
-    plt.barh(emojis, counts, color='black', height=bar_height, )
+    plt.barh(emojis, counts, color=(99/255, 99/255, 99/255), height=bar_height)
     
     # Remove background color and extra space
     plt.gca().patch.set_visible(False)  # Remove the background

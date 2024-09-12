@@ -24,6 +24,7 @@ def index():
 @app.route('/result', methods=['GET'])
 def result():
     selected_index = request.args.get('select')
+    video_id = request.args.get('video_id')  # New: Get video_id directly from query parameter
     video_details = None
     captions = None
     comments_data = None
@@ -41,62 +42,73 @@ def result():
 
     search_results = session.get('search_results', [])  # Retrieve search results from session
 
-    if selected_index is not None:
+    # Case 1: When video_id is provided directly
+    if video_id:
+        selected_video_id = video_id
+
+    # Case 2: When selected_index is provided and valid
+    elif selected_index is not None:
         try:
             selected_index = int(selected_index)  # Convert to integer
             if 0 <= selected_index < len(search_results):
                 selected_video_id = search_results[selected_index][0]
-                video_details = get_video_details(selected_video_id, api_key)
-                captions = get_captions(selected_video_id)
-                comments_data = get_comments_with_replies(selected_video_id, api_key)  # Get comments with replies
-
-                # Convert comments to lists
-                author_list, text_list = save_comments_as_list(comments_data)
-                
-                # Get top commenters
-                top_commenters = get_top_commenters(author_list)
-                
-                # Get the top 10 most common emojis
-                top_10_emojis = extract_and_rank_top_emojis(text_list)
-                
-                # Plotting the Chart
-                # Generate Base64-encoded image data
-                chart_data = plot_top_10_emojis(top_10_emojis)
-
-                #cleaned text
-                cleaned_list = cleaned_strings_list(text_list)
-
-                #Classified comments
-                categorised_dict = classify_text(text_list)
-
-                # Get the top 10 bigrams and top 5 trigrams
-                top_10_bigrams = get_top_ngrams(text_list, 2, 10)
-                top_5_trigrams = get_top_ngrams(text_list, 3, 5)
-
-                # Generate word cloud
-                plot_data = generate_wordcloud_from_cleaned_text(cleaned_list)
-
-                # Pi Chart   
-                # Generate the pie chart as a base64 string
-                pie_chart_base64 = create_pie_chart_base64(categorised_dict)
-
+            else:
+                selected_video_id = None
         except ValueError:
-            pass  # Handle invalid index here if necessary
+            selected_video_id = None
+
+    # Proceed only if a valid video ID is available
+    if selected_video_id:
+        video_details = get_video_details(selected_video_id, api_key)
+        thumbnail_url = get_thumbnail_url(video_id, api_key)
+        captions = get_captions(selected_video_id)
+        comments_data = get_comments_with_replies(selected_video_id, api_key)  # Get comments with replies
+
+        # Convert comments to lists
+        author_list, text_list = save_comments_as_list(comments_data)
+        
+        # Get top commenters
+        top_commenters = get_top_commenters(author_list)
+        
+        # Get the top 10 most common emojis
+        top_10_emojis = extract_and_rank_top_emojis(text_list)
+        
+        # Plotting the Chart
+        # Generate Base64-encoded image data
+        chart_data = plot_top_10_emojis(top_10_emojis)
+
+        # Cleaned text
+        cleaned_list = cleaned_strings_list(text_list)
+
+        # Classified comments
+        categorised_dict = classify_text(text_list)
+
+        # Get the top 10 bigrams and top 5 trigrams
+        top_10_bigrams = get_top_ngrams(text_list, 2, 10)
+        top_5_trigrams = get_top_ngrams(text_list, 3, 5)
+
+        # Generate word cloud
+        plot_data = generate_wordcloud_from_cleaned_text(cleaned_list)
+
+        # Pie Chart   
+        # Generate the pie chart as a base64 string
+        pie_chart_base64 = create_pie_chart_base64(categorised_dict)
 
     return render_template('result.html',
                             video_details=video_details,
+                            thumbnail_url=thumbnail_url,
                             captions=captions,
                             authors=author_list,
                             text_list=text_list,
                             top_commenters=top_commenters, 
                             top_10_emojis=top_10_emojis, 
                             cleaned_list=cleaned_list, 
-                            categorised_dict = categorised_dict,
-                            top_10_bigrams = top_10_bigrams,
-                            top_5_trigrams = top_5_trigrams,
-                            plot_data = plot_data,
-                            pie_chart_base64 = pie_chart_base64,
-                            chart_data = chart_data)
+                            categorised_dict=categorised_dict,
+                            top_10_bigrams=top_10_bigrams,
+                            top_5_trigrams=top_5_trigrams,
+                            plot_data=plot_data,
+                            pie_chart_base64=pie_chart_base64,
+                            chart_data=chart_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
