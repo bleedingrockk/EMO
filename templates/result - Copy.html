@@ -64,57 +64,64 @@
         </div>
         <!-- Video Statistics -->
         <div class="video-statistics">
-            {% if video_details %}
-                <h3>Video Statistics</h3>
-                <ul>
-                    <li><strong><i class="fa-solid fa-eye" style="color: #181818;"></i>  Views:</strong>  {{ video_details.view_count }}</li>
-                    <li><strong><i class="fa-solid fa-thumbs-up" style="color: #181818;"></i>   Likes:</strong> {{ video_details.like_count }}</li>
-                    <li><strong><i class="fa-solid fa-comment" style="color: #181818;"></i> Comments:</strong> {{ video_details.comment_count }}</li>
-                    <li><strong><i class="fa-solid fa-clock" style="color: #181818;"></i> Duration:</strong> {{ video_details.duration }}</li> </ul>
-            {% endif %}
+            <h3>Video Statistics</h3>
+            <ul>
+                <li><strong><i class="fa-solid fa-eye" style="color: #181818;"></i>  Views:</strong>  1000</li>
+                <li><strong><i class="fa-solid fa-thumbs-up" style="color: #181818;"></i>   Likes:</strong> 500</li>
+                <li><strong><i class="fa-solid fa-comment" style="color: #181818;"></i> Comments:</strong> 200</li>
+                <li><strong><i class="fa-solid fa-clock" style="color: #181818;"></i> Duration:</strong> 10:30</li> 
+            </ul>
         </div>
     </div>
-
+    
     <div class="container horizontal-container">
         <!-- Top Commenters -->
         <div class="top-commenters">
-            {% if top_commenters %}
-                <h3>Top 10 Commenters</h3>
-                <ul>
-                    {% for commenter, count in top_commenters %}
-                        <li><strong>{{ commenter }}:</strong> {{ count }} comments</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+            <h3>Top 10 Commenters</h3>
+            <ul>
+                <li><strong>User1:</strong> 10 comments</li>
+                <li><strong>User2:</strong> 8 comments</li>
+                <li><strong>User3:</strong> 7 comments</li>
+                <li><strong>User4:</strong> 6 comments</li>
+                <li><strong>User5:</strong> 5 comments</li>
+                <li><strong>User6:</strong> 4 comments</li>
+                <li><strong>User7:</strong> 3 comments</li>
+                <li><strong>User8:</strong> 2 comments</li>
+                <li><strong>User9:</strong> 1 comment</li>
+                <li><strong>User10:</strong> 1 comment</li>
+            </ul>
         </div>
         <div class="info-container">
             Discover the top 10 users who have commented the most on this video.
         </div>
     </div>
-
+    
     <div class="container horizontal-container">
         <div class="info-container">
             Explore the top 10 emojis used in the comments of this video.
         </div>
         <!-- Top Emojis -->
         <div class="top_emojis">
-            {% if top_10_emojis %}
-                <h3>Top 10 Emojis</h3>
-                <div class="top_emojis_sub">
-                    <div>
-                        <ul>
-                            {% for emoji, count in top_10_emojis %}
-                                <li>{{ emoji }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div>
-                        <img src="data:image/png;base64,{{ chart_data }}" alt="Top 10 Emojis Chart">
-                    </div>
+            <h3>Top 10 Emojis</h3>
+            <div class="top_emojis_sub">
+                <div>
+                    <ul>
+                        <li>😂</li>
+                        <li>🤣</li>
+                        <li>👍</li>
+                        <li>💔</li>
+                        <li>😍</li>
+                        <li>😘</li>
+                        <li>😊</li>
+                        <li>😃</li>
+                        <li>😄</li>
+                        <li>😆</li>
+                    </ul>
                 </div>
-                
-            {% endif %}
-            
+                <div>
+                    <img src="download.png">
+                </div>
+            </div>
         </div>
     </div>
     

@@ -136,11 +136,11 @@ def plot_top_10_emojis(top_10_emojis):
     buf = io.BytesIO()
     
     # Create the bar chart
-    plt.figure(figsize=(3,4.28))
+    plt.figure(figsize=(5,4.28))
     
     # Define the gap between bars
     bar_height = 0.8 # Adjust the height of the bars to increase the gap
-    plt.barh(emojis, counts, color=(99/255, 99/255, 99/255), height=bar_height)
+    plt.barh(emojis, counts, color=(24/255, 24/255, 24/255), height=bar_height)
     
     # Remove background color and extra space
     plt.gca().patch.set_visible(False)  # Remove the background

@@ -190,6 +190,7 @@ h1 {
 .video-details {
     margin-bottom: 20px;
     text-align: center;
+    background-color: transparent !important;
 }
 
 h2 {
@@ -253,17 +254,28 @@ ul li {
 /* Flexbox container for horizontal arrangement */
 .horizontal-container {
     display: flex;
+    background-color: transparent !important;
     justify-content: space-between;
     gap: 20px;
 }
 
 /* Sections within the flexbox container */
 .horizontal-container > div {
-    background: #c9cac9ea; /* Light background */
+    background: var(--primary-color); /* Light background */
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     flex: 1; /* Equal width for all items */
+}
+
+.info-container {
+    background-color: transparent !important;
+    font-size: 30px;
+    font-weight: bold !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Add this line to center vertically */
 }
 
 /* Clean list items in statistics and others */
