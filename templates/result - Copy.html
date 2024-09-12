@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <title>YouTube Search</title>
-    
+
 </head>
 <body>
 
@@ -128,21 +128,43 @@
     <!-- Sentiment Categories as Dropdown Menus -->
     <div class="container">
         <h2>Sentiments</h2>
-
-        {% for category, comments in categorised_dict.items() %}
+    
         <div class="dropdown">
-            <button class="dropdown-btn">{{ category }}</button>
-            <div class="dropdown-content" id="{{ category }}" style="display: none;">
+            <button class="dropdown-btn">Positive</button>
+            <div class="dropdown-content" id="Positive" style="display: none;">
                 <ul>
-                    {% for comment in comments %}
-                        <li>{{ comment }}</li>
-                    {% endfor %}
+                    <li>This product is amazing!</li>
+                    <li>I love the new design!</li>
+                    <li>The customer service is top-notch!</li>
                 </ul>
             </div>
         </div>
-        {% endfor %}
+    
+        <div class="dropdown">
+            <button class="dropdown-btn">Negative</button>
+            <div class="dropdown-content" id="Negative" style="display: none;">
+                <ul>
+                    <li>This product is terrible!</li>
+                    <li>The new design is awful!</li>
+                    <li>The customer service is unresponsive!</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="dropdown">
+            <button class="dropdown-btn">Neutral</button>
+            <div class="dropdown-content" id="Neutral" style="display: none;">
+                <ul>
+                    <li>This product is okay.</li>
+                    <li>The design is decent.</li>
+                    <li>The customer service is average.</li>
+                </ul>
+            </div>
+        </div>
     </div>
+
     <div class="container pie-container">
+
         <h2>Pie Chart of Category Counts</h2>
         <!-- Display Pie Chart -->
         {% if pie_chart_base64 %}
@@ -152,47 +174,45 @@
         {% endif %}
     </div>
     
-    
-    
-    
     <div class="container horizontal-container">
         <!-- Top 10 Bigrams -->
+        
+        <div class="info-container">
+            Explore the top 10 bigrams used in the comments of this video.
+        </div>
         <div class="bigrams">
             <h3>Top 10 Bigrams</h3>
             <ul>
-                {% for bigram, count in top_10_bigrams %}
-                    <li>{{ bigram }}: {{ count }}</li>
-                {% endfor %}
+                <li>hello world: 10</li>
+                <li>big data: 8</li>
+                <li>machine learning: 7</li>
+                <li>natural language: 6</li>
+                <li>artificial intelligence: 5</li>
+                <li>data science: 4</li>
+                <li>deep learning: 3</li>
+                <li>computer vision: 2</li>
+                <li>python programming: 1</li>
+                <li>javascript framework: 1</li>
             </ul>
         </div>
+    </div>
 
+    <div class="container horizontal-container">
+        
         <!-- Top 5 Trigrams -->
         <div class="trigrams">
             <h3>Top 5 Trigrams</h3>
             <ul>
-                {% for trigram, count in top_5_trigrams %}
-                    <li>{{ trigram }}: {{ count }}</li>
-                {% endfor %}
+                <li>hello world again: 5</li>
+                <li>big data analytics: 4</li>
+                <li>machine learning models: 3</li>
+                <li>natural language processing: 2</li>
+                <li>artificial intelligence systems: 1</li>
             </ul>
         </div>
-
-        <script>
-            // Get all dropdown buttons
-            var dropdownButtons = document.querySelectorAll('.dropdown-btn');
-    
-            dropdownButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    // Toggle the visibility of the associated comments section
-                    var content = this.nextElementSibling;
-                    if (content.style.display === "none" || content.style.display === "") {
-                        content.style.display = "block";
-                    } else {
-                        content.style.display = "none";
-                    }
-                });
-            });
-        </script>
-        
+        <div class="info-container">
+            Discover the top 10 bigrams that often co-occur with other words in the comments.
+        </div>
     </div>
 
     <div class="container word-container">

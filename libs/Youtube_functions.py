@@ -76,6 +76,7 @@ def youtube_search(api_key, query, max_results=4, initial_results=30):
     # Final results
     return results
 
+
 def get_thumbnail_url(video_id, api_key):
     youtube = build('youtube', 'v3', developerKey=api_key)
 
@@ -87,7 +88,7 @@ def get_thumbnail_url(video_id, api_key):
 
     thumbnail_url = response['items'][0]['snippet']['thumbnails']['maxres']['url']
     return thumbnail_url
-
+    
 # This function will use video ID to get details about the video from youtube
 def get_video_details(video_id, api_key):
     youtube = build('youtube', 'v3', developerKey=api_key)
@@ -132,7 +133,7 @@ def get_captions(video_id):
 
 
 # This function will return comments with replies from youtube using video ID
-def get_comments_with_replies(video_id, api_key, max_results=100):
+def get_comments_with_replies(video_id, api_key, max_results=1000):
     """
     This function retrieves comments for a YouTube video, including replies,
     up to a maximum of 10000 comments.

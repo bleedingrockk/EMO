@@ -60,7 +60,7 @@ def result():
     # Proceed only if a valid video ID is available
     if selected_video_id:
         video_details = get_video_details(selected_video_id, api_key)
-        thumbnail_url = get_thumbnail_url(video_id, api_key)
+        thumbnail_url = get_thumbnail_url(selected_video_id, api_key)
         captions = get_captions(selected_video_id)
         comments_data = get_comments_with_replies(selected_video_id, api_key)  # Get comments with replies
 

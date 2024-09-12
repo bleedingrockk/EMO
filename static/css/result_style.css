@@ -180,7 +180,7 @@ h1 {
 .container {
     max-width: 1200px; /* Increase width */
     margin: 0 auto;
-    background: #555555;
+    background: transparent;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -202,9 +202,9 @@ h2 {
 }
 
 h3 {
-    color: #555;
+    color: var(--text-color);
     margin-bottom: 10px;
-    font-size: 1.2em;
+    font-size: 30px;
 }
 
 p {
@@ -219,11 +219,10 @@ ul {
 }
 
 ul li {
-    background: #f9f9f9;
+    background: var(--background-color);
     margin: 5px 0;
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px var(--text-color);
 }
 
 .comments ul ul {
@@ -232,6 +231,7 @@ ul li {
 
 .top_emojis_sub{
     display: flex;
+    justify-content: space-around;
 }
 
 .top_emojis_sub ul {
@@ -251,6 +251,7 @@ ul li {
     background: #fff4f4;
 }
 
+
 /* Flexbox container for horizontal arrangement */
 .horizontal-container {
     display: flex;
@@ -268,6 +269,7 @@ ul li {
     flex: 1; /* Equal width for all items */
 }
 
+
 .info-container {
     background-color: transparent !important;
     font-size: 30px;
@@ -276,6 +278,13 @@ ul li {
     flex-direction: column;
     align-items: center;
     justify-content: center; /* Add this line to center vertically */
+}
+
+.video-statistics{
+    font-size: 15px;;
+}
+.top-commenters{
+    font-size: 15px;;
 }
 
 /* Clean list items in statistics and others */
@@ -331,11 +340,13 @@ ul li {
 
 .dropdown {
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .dropdown-btn {
     width: 100%;
     padding: 10px;
+    border-radius: 10px;
     background-color: white;
     color: black;
     border: none;
@@ -351,18 +362,27 @@ ul li {
 
 .dropdown-content {
     padding-left: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--background-color);
     overflow: hidden;
     border-left: 5px solid #c9cac9ea;
+    border-radius: 10px;
+    line-height: 1.5;
+    
 }
 
 .dropdown-content ul {
     list-style-type: none;
     padding: 0;
+    background-color: var(--background-color);
 }
 
 .dropdown-content li {
     padding: 5px 0;
+    border: 0.5px solid;
+    border-color: rgba(254, 252, 241, 0.5);
+    border-radius: 5px;
+    padding: 3px;
+
 }
 .h3{
     text-align: center;
@@ -375,7 +395,7 @@ ul li {
 .word-container {
     max-width: 1200px; /* Increase width */
     margin: 0 auto;
-    background: white;
+    background: transparent;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -385,7 +405,7 @@ ul li {
 .pie-container {
     max-width: 1200px; /* Increase width */
     margin: 0 auto;
-    background: white;
+    background: transparent;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

@@ -9,34 +9,52 @@ import matplotlib.pyplot as plt
 def generate_wordcloud_from_cleaned_text(cleaned_text_list):
     """
     Generates a word cloud image from a list of cleaned strings, applies a custom shape,
-    and returns it as a base64-encoded string.
+    and returns it as a base64-encoded string with a transparent background.
     
     Parameters:
         cleaned_text_list (list): A list of cleaned strings.
         
     Returns:
-        str: The base64-encoded string of the word cloud image.
+        str: The base64-encoded string of the word cloud image with a transparent background.
     """
-
 
     # Combine the list of cleaned strings into a single string
     text = " ".join(cleaned_text_list)
     
     # Create a WordCloud object with custom settings
     wordcloud = WordCloud(width=1200,
-                        height=600,
-                        background_color='black',
-                        colormap='plasma',  # Color map
-                        contour_color='white',  # Outline color
-                        contour_width=1,  # Outline width
-                        mode='RGB').generate(text)
+                            height=600,
+                            background_color='blqck',  # Temporary white background
+                            colormap='plasma',  # Color map
+                            contour_color='black',  # Outline color
+                            contour_width=1,  # Outline width
+                            mode='RGBA'  # Mode that supports transparency (RGBA)
+                            ).generate(text)
+    
+    # Convert WordCloud to an image
+    wordcloud_image = wordcloud.to_image()
+    
+    # Convert the white background to transparency
+    wordcloud_image = wordcloud_image.convert("RGBA")
+    datas = wordcloud_image.getdata()
+
+    new_data = []
+    for item in datas:
+        # Change white (or near white) to transparent
+        if item[:3] == (255, 255, 255):  # Detect white pixels
+            new_data.append((255, 255, 255, 0))  # Set to transparent
+        else:
+            new_data.append(item)
+    
+    # Update the image data with the new transparent background
+    wordcloud_image.putdata(new_data)
     
     # Save the word cloud to a BytesIO object
     buf = io.BytesIO()
-    wordcloud.to_image().save(buf, format='PNG')
+    wordcloud_image.save(buf, format='PNG')
     buf.seek(0)
     
-    # Encode image to base64 for HTML embedding
+    # Encode the image to base64 for HTML embedding
     plot_data = base64.b64encode(buf.getvalue()).decode('utf-8')
     
     return plot_data
@@ -81,9 +99,9 @@ def create_pie_chart_base64(my_dict):
     # Determine which slices to explode
     explode = [0.2] * len(labels)  # Explode all slices for better visibility
     
-    # Create a pie chart with a black background
-    plt.figure(figsize=(12, 8), facecolor='black')  # Set figure background color
-    plt.gca().set_facecolor('black')  # Set plot area background color
+    # Create a pie chart without any background color
+    plt.figure(figsize=(12, 8), facecolor='none')  # No figure background color
+    plt.gca().set_facecolor('none')  # No plot area background color
     
     wedges, texts, autotexts = plt.pie(sizes,
                                         labels=labels,
@@ -93,30 +111,29 @@ def create_pie_chart_base64(my_dict):
                                         shadow=shadow,
                                         explode=explode)  # Apply explosion to all slices
 
-    # Improve readability of the labels and percentages with white color
+    # Improve readability of the labels and percentages
     for text in texts:
         text.set_fontsize(14)
-        text.set_color('white')  # Set text color to white for contrast
+        text.set_color('white')  # Set text color to black for contrast
         text.set_fontweight('bold')
         
     for autotext in autotexts:
         autotext.set_fontsize(14)
-        autotext.set_color('white')  # Set percentage text color to white for contrast
+        autotext.set_color('white')  # Set percentage text color to black for contrast
         autotext.set_fontweight('bold')
     
-    plt.title('Enhanced Pie Chart of Category Counts', fontsize=18, fontweight='bold', color='white')  # Set title color to white
+    plt.title('Enhanced Pie Chart of Category Counts', fontsize=18, fontweight='bold', color='white')  # Set title color to black
     plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
-    # Save the pie chart to a BytesIO object
+    # Save the pie chart to a BytesIO object with a transparent background
     buf = io.BytesIO()
-    plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=1)
+    plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=1, transparent=True)  # Save with transparent background
     buf.seek(0)
     
     # Encode image to base64 for HTML embedding
     pie_chart_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
     
     return pie_chart_base64
-
 
 # ------------------------------------------ EMOJI CHART- --------------------------------------------
 def plot_top_10_emojis(top_10_emojis):
@@ -153,7 +170,7 @@ def plot_top_10_emojis(top_10_emojis):
     plt.gca().xaxis.set_visible(False)  # Ensure x-axis is visible
     
     # Remove any extra space from the left of the y-axis
-    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+    plt.subplots_adjust(left=0.1, right=0.8, top=0.9, bottom=0.1)
         
     plt.gca().invert_yaxis()  # Invert y-axis to have the highest counts at the top
     plt.tight_layout()  # Adjust layout to make room for labels
